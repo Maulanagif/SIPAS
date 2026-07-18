@@ -1,0 +1,708 @@
+/* ============================================
+   KELOLA ANTRIAN PAGE STYLES
+   ============================================
+   File: kelola_antrian.css
+   Deskripsi: Styles khusus untuk halaman kelola antrian admin
+   ============================================ */
+
+/* ============================================
+   1. FILTER FORM STYLES
+   ============================================ */
+
+.filter-input-date {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    height: 42px;
+    box-sizing: border-box;
+}
+
+.filter-input-date:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.14);
+}
+
+.btn-filter {
+    height: 42px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Alert success dengan tombol tutup (X) */
+.alert-dismissible {
+    position: relative;
+}
+.alert-close-btn {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 22px;
+    line-height: 1;
+    color: inherit;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 0 4px;
+    border-radius: 4px;
+    transition: opacity 0.2s;
+}
+.alert-close-btn:hover {
+    opacity: 1;
+    background: rgba(0,0,0,0.08);
+}
+
+/* ============================================
+   3. TABLE STYLES
+   ============================================ */
+
+.data-table thead {
+    /* Header tabel hijau mengikuti warna utama */
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+}
+
+.data-table th {
+    padding: 15px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    vertical-align: middle;
+}
+
+.data-table td {
+    padding: 15px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.data-table tbody tr {
+    transition: background 0.2s;
+}
+
+.data-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ============================================
+   4. INPUT & SELECT STYLES
+   ============================================ */
+
+.input-nomor {
+    width: 80px;
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.input-nomor:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.14);
+}
+
+.input-nomor.disabled-field {
+    background: #f3f4f6;
+    cursor: not-allowed;
+    color: #6b7280;
+}
+
+.status-select {
+    padding: 6px 10px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    font-size: 14px;
+    min-width: 120px;
+    background: white;
+}
+
+.status-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(21, 128, 61, 0.14);
+}
+
+/* Status Select - Biarkan browser menggunakan style default untuk konsistensi */
+
+.status-select.disabled-field {
+    background: #f3f4f6;
+    cursor: not-allowed;
+    color: #6b7280;
+}
+
+/* ============================================
+   5. TABLE CONTAINER
+   ============================================ */
+
+.table-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================
+   6. FORM TAMBAH ANTRIAN OFFLINE
+   ============================================
+   Layout menggunakan CSS Grid agar field konsisten (sama lebar per baris).
+   Desktop: 4 kolom (baris 1), 3 kolom (baris 2). Mobile: tumpuk vertikal. */
+
+.form-tambah-offline {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-tambah-offline .form-row {
+    display: grid;
+    gap: 16px;
+    align-items: end;
+}
+
+/* Baris 1: 4 kolom sama lebar - Tanggal | Nama | Umur | Jenis Kelamin */
+.form-tambah-offline .form-row:nth-child(1) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+/* Baris 2: 3 kolom sama lebar - NIK | Layanan Yang Dituju | Nomor Antrian */
+.form-tambah-offline .form-row:nth-child(2) {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Baris 3: Keluhan (full width) */
+.form-tambah-offline .form-row:nth-child(3) {
+    grid-template-columns: 1fr;
+}
+
+/* Baris 4: Tombol Tambah */
+.form-tambah-offline .form-row:nth-child(4) {
+    grid-template-columns: auto;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 6px;
+}
+
+.form-group-small {
+    min-width: 90px;
+}
+
+.form-group-medium {
+    min-width: 150px;
+}
+
+.form-group-large {
+    min-width: 200px;
+}
+
+.form-group-standard {
+    min-width: 0;
+}
+
+.form-group-compact {
+    min-width: 0;
+}
+
+.form-group-button {
+    flex: 0 0 auto;
+}
+
+/* Form group full: memanjang ke seluruh lebar baris (untuk textarea Keluhan) */
+.form-group-full {
+    grid-column: 1 / -1;
+}
+
+.form-input,
+.form-select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    box-sizing: border-box;
+    height: 42px;
+}
+
+/* Desktop: form tambah antrian offline - semua field sama lebar per baris */
+@media (min-width: 769px) {
+    .form-tambah-offline {
+        gap: 20px;
+    }
+    
+    .form-tambah-offline .form-input,
+    .form-tambah-offline .form-select {
+        height: 42px;
+        padding: 10px 12px;
+    }
+    
+    .card:has(.form-tambah-offline) {
+        padding: 24px;
+    }
+    
+    .card:has(.form-tambah-offline) h2 {
+        margin-bottom: 18px;
+        margin-top: 0;
+        font-size: 20px;
+    }
+    
+    .card:has(.form-tambah-offline) small {
+        margin-top: 14px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .btn-submit-form {
+        height: 42px;
+        padding: 10px 24px;
+        font-size: 14px;
+        font-weight: 500;
+    }
+}
+
+/* Mobile: form tambah antrian offline - stack vertikal */
+@media (max-width: 768px) {
+    .form-tambah-offline .form-row:nth-child(1) {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-tambah-offline .form-row:nth-child(2) {
+        grid-template-columns: 1fr;
+    }
+}
+
+.form-input:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.14);
+}
+
+/* Select Dropdown Option - Biarkan browser menggunakan style default untuk konsistensi */
+
+.btn-submit-form {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s;
+    white-space: nowrap;
+    height: 42px;
+    box-sizing: border-box;
+}
+
+.btn-submit-form:hover {
+    background: var(--primary-dark, #0056b3);
+}
+
+/* ============================================
+   7. DESKTOP STYLES
+   ============================================ */
+
+@media (min-width: 769px) {
+    .data-table {
+        min-width: 100%;
+    }
+    
+    /* Lebar kolom optimal untuk desktop */
+    .data-table th:nth-child(1), .data-table td:nth-child(1) { width: 50px; } /* No */
+    .data-table th:nth-child(2), .data-table td:nth-child(2) { min-width: 150px; } /* Nama */
+    .data-table th:nth-child(3), .data-table td:nth-child(3) { min-width: 120px; } /* Klaster */
+    .data-table th:nth-child(4), .data-table td:nth-child(4) { width: 120px; } /* Waktu Daftar */
+    .data-table th:nth-child(5), .data-table td:nth-child(5) { width: 130px; } /* Nomor Antrian */
+    .data-table th:nth-child(6), .data-table td:nth-child(6) { 
+        width: 100px; 
+        text-align: center; 
+        min-width: 100px;
+    } /* Sumber */
+    
+    /* Pastikan badge sumber selalu terlihat */
+    .badge-sumber {
+        display: inline-block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .data-table th:nth-child(7), .data-table td:nth-child(7) { width: 130px; } /* Status */
+}
+
+/* ============================================
+   8. MOBILE & TABLET STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+    /* Card padding konsisten dengan halaman lain */
+    .card {
+        padding: 18px 16px;
+        margin-bottom: 16px;
+    }
+    
+    .card h2 {
+        font-size: 18px;
+        margin-bottom: 16px;
+        margin-top: 0;
+    }
+    
+    /* Form tambah antrian offline - card header dan margin */
+    .card > h2:first-child {
+        font-size: 18px;
+        margin-bottom: 16px;
+        margin-top: 0;
+    }
+    
+    /* Pastikan margin bottom card form konsisten */
+    .card[style*="margin-bottom: 20px"] {
+        margin-bottom: 16px !important;
+    }
+    
+    /* Pastikan tidak ada gap yang tidak perlu antara form-row */
+    .form-tambah-offline .form-row + .form-row {
+        margin-top: 0;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -16px;
+        padding: 0 16px;
+    }
+    
+    .data-table {
+        display: table;
+        width: 100%;
+        min-width: 1000px;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        background: white;
+    }
+    
+    .data-table thead {
+        display: table-header-group;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+    }
+    
+    .data-table tbody {
+        display: table-row-group;
+    }
+    
+    .data-table th,
+    .data-table td {
+        display: table-cell;
+        white-space: nowrap;
+    }
+    
+    .data-table th {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        padding: 12px 10px;
+        text-align: left;
+        font-weight: 600;
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        vertical-align: middle;
+    }
+    
+    .data-table td {
+        padding: 12px 10px;
+        border-bottom: 1px solid var(--border);
+        font-size: 12px;
+        vertical-align: middle;
+    }
+    
+    .data-table tbody td:before {
+        display: none;
+    }
+    
+    /* Ukuran kolom untuk mobile */
+    .data-table th:nth-child(1),
+    .data-table td:nth-child(1) {
+        width: 40px;
+        min-width: 40px;
+    }
+    
+    .data-table th:nth-child(2),
+    .data-table td:nth-child(2) {
+        width: 120px;
+        min-width: 120px;
+    }
+    
+    .data-table th:nth-child(3),
+    .data-table td:nth-child(3) {
+        width: 100px;
+        min-width: 100px;
+    }
+    
+    .data-table th:nth-child(4),
+    .data-table td:nth-child(4) {
+        width: 100px;
+        min-width: 100px;
+    }
+    
+    .data-table th:nth-child(5),
+    .data-table td:nth-child(5) {
+        width: 110px;
+        min-width: 110px;
+    }
+    
+    .data-table th:nth-child(6),
+    .data-table td:nth-child(6) {
+        width: 80px;
+        min-width: 80px;
+        text-align: center;
+    }
+    
+    .data-table th:nth-child(7),
+    .data-table td:nth-child(7) {
+        width: 120px;
+        min-width: 120px;
+    }
+    
+    /* Input dan select di mobile */
+    .input-nomor {
+        width: 100%;
+        max-width: 80px;
+        font-size: 12px;
+        padding: 6px 8px;
+    }
+    
+    .status-select {
+        width: 100%;
+        max-width: 110px;
+        font-size: 12px;
+        padding: 6px 8px;
+        min-width: 110px;
+    }
+    
+    /* Filter form di mobile - konsisten dengan halaman lain */
+    .filter-form-inline {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 16px;
+    }
+    
+    .filter-group-inline {
+        max-width: 100% !important;
+        width: 100%;
+    }
+    
+    .filter-group-inline input,
+    .filter-group-inline select,
+    .filter-group-inline .filter-input-date {
+        width: 100%;
+        box-sizing: border-box;
+        min-width: auto;
+    }
+    
+    /* Tombol filter di mobile */
+    .filter-form-inline > div:last-child {
+        width: 100% !important;
+        margin-left: 0 !important;
+        flex: 1 1 100% !important;
+        display: flex !important;
+        align-items: stretch !important;
+    }
+    
+    .filter-form-inline .btn-filter {
+        width: 100% !important;
+        justify-content: center;
+        min-width: auto !important;
+    }
+    
+    /* Form actions di mobile */
+    .form-actions {
+        margin-top: 16px !important;
+        padding-top: 16px !important;
+    }
+    
+    .form-actions .btn-submit {
+        width: 100%;
+        padding: 14px 20px !important;
+        font-size: 15px !important;
+    }
+    
+    /* Info notice di mobile */
+    .info-notice {
+        margin-top: 16px !important;
+        padding: 12px !important;
+        font-size: 13px !important;
+    }
+    
+    .info-notice p {
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    /* Form tambah antrian offline di mobile - spacing compact dan konsisten */
+    .form-tambah-offline {
+        gap: 8px;
+        margin-top: 0;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 8px;
+        margin-bottom: 0;
+    }
+    
+    .form-row:first-child {
+        margin-bottom: 0;
+    }
+    
+    .form-row:last-child {
+        margin-bottom: 0;
+    }
+    
+    .form-group {
+        width: 100%;
+        flex: 1 1 100%;
+        min-width: 100%;
+        margin-bottom: 0;
+    }
+    
+    .form-group label {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 6px;
+        color: var(--text);
+        display: block;
+    }
+    
+    .form-group-small,
+    .form-group-medium,
+    .form-group-large,
+    .form-group-standard,
+    .form-group-compact,
+    .form-group-button {
+        flex: 1 1 100%;
+        min-width: 100%;
+        width: 100%;
+    }
+    
+    /* Form group button khusus untuk tombol submit */
+    .form-group-button {
+        margin-top: 0;
+    }
+    
+    .form-group-button label {
+        display: none;
+    }
+    
+    .form-input,
+    .form-select {
+        width: 100%;
+        padding: 11px 14px;
+        font-size: 15px;
+        border-radius: 8px;
+        box-sizing: border-box;
+    }
+    
+    .btn-submit-form {
+        width: 100%;
+        padding: 12px 20px;
+        font-size: 15px;
+        height: auto;
+        margin-top: 0;
+    }
+    
+    /* Pastikan tidak ada margin ekstra pada form group */
+    .form-group + .form-group {
+        margin-top: 0;
+    }
+    
+    /* Text kecil di bawah form - jarak konsisten */
+    .card small {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 0;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    /* Pastikan card form tambah antrian offline memiliki spacing yang konsisten */
+    .card:has(.form-tambah-offline) {
+        padding: 18px 16px;
+    }
+    
+    .card:has(.form-tambah-offline) h2 {
+        margin-bottom: 14px;
+        margin-top: 0;
+    }
+    
+    /* Pastikan form di dalam card tidak ada margin ekstra */
+    .card:has(.form-tambah-offline) form {
+        margin-bottom: 0;
+    }
+    
+    /* Pastikan form-tambah-offline langsung setelah h2 tidak ada margin top */
+    .card:has(.form-tambah-offline) h2 + form .form-tambah-offline {
+        margin-top: 0;
+    }
+}
+
+/* ============================================
+   9. TABLET STYLES
+   ============================================ */
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .table-container {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .data-table {
+        min-width: 1100px;
+    }
+    
+    .form-row {
+        gap: 10px;
+    }
+    
+    .form-group-small {
+        flex: 0 0 90px;
+        min-width: 90px;
+    }
+    
+    .form-group-medium {
+        flex: 0 0 130px;
+        min-width: 130px;
+    }
+}
+

@@ -1,0 +1,121 @@
+/* ============================================
+   DASHBOARD USER PAGE STYLES
+   ============================================
+   File: dashboard_user.css
+   Deskripsi: Styles khusus untuk halaman dashboard user
+   ============================================ */
+
+/* ============================================
+   1. WELCOME SECTION
+   ============================================
+   Bagian selamat datang di bagian atas halaman
+   ============================================ */
+
+.welcome-section {
+    /* Gradien hijau mengikuti warna utama logo */
+    background: linear-gradient(135deg, var(--primary), #22c55e);
+    padding: 40px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.welcome-content h2 {
+    margin: 0 0 10px 0;
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.welcome-content p {
+    margin: 0;
+    color: rgba(255,255,255,0.9);
+    font-size: 16px;
+}
+
+
+/* ============================================
+   2. SECTION TITLE
+   ============================================
+   Judul section dengan garis dekoratif di kiri
+   ============================================ */
+
+.section-title {
+    margin: 40px 0 20px 0;
+}
+
+.section-title h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: 24px;
+    font-weight: 700;
+    position: relative;
+    padding-left: 15px;
+}
+
+/* Garis Dekoratif di Kiri Judul */
+.section-title h3::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 24px;
+    /* Garis aksen hijau di kiri judul */
+    background: linear-gradient(135deg, var(--primary), #22c55e);
+    border-radius: 2px;
+}
+
+
+/* ============================================
+   3. RESPONSIVE DESIGN
+   ============================================
+   Media queries untuk tampilan mobile/tablet
+   ============================================ */
+
+/* Tablet & Mobile (lebar layar <= 768px) */
+@media (max-width: 768px) {
+    .welcome-section {
+        padding: 24px 20px;
+        border-radius: 14px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .welcome-content h2 {
+        font-size: 20px;
+    }
+    
+    .welcome-content p {
+        font-size: 13px;
+    }
+
+    .section-title {
+        margin: 24px 0 16px 0;
+    }
+
+    .section-title h3 {
+        font-size: 18px;
+    }
+}
+
+/* Mobile kecil (lebar layar <= 480px) */
+@media (max-width: 480px) {
+    .welcome-section {
+        padding: 20px 16px;
+        border-radius: 12px;
+    }
+
+    .welcome-content h2 {
+        font-size: 18px;
+    }
+    
+    .welcome-content p {
+        font-size: 12px;
+    }
+
+    .section-title h3 {
+        font-size: 16px;
+    }
+}

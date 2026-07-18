@@ -1,0 +1,294 @@
+/* ============================================
+   LAPORAN PAGE STYLES
+   ============================================
+   File: laporan.css
+   Deskripsi: Styles khusus untuk halaman laporan admin
+   ============================================ */
+
+/* ============================================
+   0. REPORT DROPDOWN (PILIH LAPORAN)
+   --------------------------------------------
+   Halaman laporan (views/admin/laporan.php):
+   Menggantikan card grid dengan dropdown + tombol.
+   Desktop: dropdown dan tombol sejajar. Mobile: tumpuk vertikal.
+   ============================================ */
+
+.report-select-card {
+    margin-bottom: 24px;
+}
+
+@media (min-width: 769px) {
+    /* Desktop: card selebar container (full width) agar konsisten dengan card lain */
+    .report-select-card {
+        width: 100%;
+    }
+}
+
+.report-title {
+    margin: 0;
+    font-size: 22px;
+}
+
+.report-subtitle {
+    margin: 6px 0 16px 0;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.report-dropdown-form {
+    margin: 0;
+}
+
+/* Wrapper dropdown + tombol: vertikal di mobile, horizontal di desktop */
+.report-dropdown-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Select dropdown: styling konsisten dengan form lain */
+.report-select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    background: white;
+    color: var(--text);
+}
+
+.report-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.14);
+}
+
+.report-submit-btn {
+    padding: 12px 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Desktop/tablet: dropdown dan tombol dalam satu baris */
+@media (min-width: 480px) {
+    .report-dropdown-wrap {
+        flex-direction: row;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    .report-select {
+        flex: 1;
+        min-width: 0;
+    }
+    
+    .report-submit-btn {
+        flex-shrink: 0;
+    }
+}
+
+/* ============================================
+   1. STATUS BADGE STYLES
+   ============================================ */
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-menunggu {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-dipanggil {
+    background-color: #cfe2ff;
+    color: #084298;
+}
+
+.status-selesai {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-batal {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+/* ============================================
+   2. FILTER FORM STYLES
+   ============================================ */
+
+.filter-search-input,
+.filter-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+}
+
+.filter-search-input:focus,
+.filter-select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.14);
+}
+
+/* Select Dropdown Option - Biarkan browser menggunakan style default untuk konsistensi */
+
+/* ============================================
+   3. SUMMARY CARD STYLES
+   ============================================ */
+
+.summary-card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Bar filter + tombol cetak: satu baris, filter dan tombol sejajar (rapi) */
+.laporan-filter-bar {
+    margin-bottom: 20px;
+    margin-left: 0;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 16px;
+}
+.laporan-filter-bar form.laporan-filter-form {
+    margin: 0;
+    padding: 0;
+}
+.laporan-filter-form .filter-form-inline {
+    margin: 0;
+    padding: 0;
+}
+.laporan-filter-form { flex: 1; min-width: 0; }
+.laporan-cetak-wrap {
+    flex-shrink: 0;
+    display: flex;
+    align-items: flex-end;
+}
+/* Tinggi tombol sama dengan tinggi input agar sejajar satu garis */
+.laporan-cetak-wrap .btn {
+    height: 40px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+}
+
+/* Data pasien: hanya tombol cetak (tidak ada filter) */
+.laporan-cetak-only { margin-bottom: 20px; }
+
+/* ============================================
+   4. DESKTOP STYLES
+   ============================================ */
+
+@media (min-width: 769px) {
+    .laporan-filter-bar {
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        gap: 20px;
+    }
+    .laporan-filter-form { flex: 0 1 auto; }
+    /* Tombol persis sejajar dengan baseline input filter */
+    .laporan-cetak-wrap .btn { height: 40px; min-height: 40px; }
+    
+    /* Filter rapi: mulai dari kiri (tidak jorok), lebar konsisten */
+    .filter-form-laporan {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-end;
+        gap: 20px;
+        margin: 0;
+    }
+    .filter-form-laporan .filter-group-inline {
+        flex: 0 0 auto;
+        min-width: 180px;
+        max-width: 220px;
+        margin: 0;
+    }
+    .filter-form-laporan .filter-group-inline label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: var(--text);
+        font-size: 14px;
+    }
+    .filter-form-laporan .filter-group-inline input[type="month"],
+    .filter-form-laporan .filter-group-inline input[type="date"],
+    .filter-form-laporan .filter-group-inline .filter-select {
+        width: 100%;
+        min-width: 0;
+        height: 40px;
+        box-sizing: border-box;
+    }
+    .filter-form-laporan .filter-group-inline:last-child {
+        margin-left: 0;
+    }
+}
+
+/* ============================================
+   6. TABLE TEXT ALIGN UTILITIES (KHUSUS LAPORAN)
+   --------------------------------------------
+   Membantu meratakan teks (angka) di tabel laporan
+   tanpa mengganggu tabel lain di sistem.
+   ============================================ */
+
+.data-table th.text-center,
+.data-table td.text-center {
+    text-align: center;
+}
+
+/* ============================================
+   5. MOBILE & TABLET STYLES
+   ============================================ */
+
+@media (max-width: 768px) {
+    .laporan-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .laporan-cetak-wrap { order: 1; }
+    .laporan-filter-form { order: 0; }
+    
+    .filter-form-laporan {
+        gap: 10px;
+    }
+    
+    .filter-form-inline {
+        flex-direction: column;
+    }
+    
+    .filter-group-inline {
+        max-width: 100% !important;
+        width: 100%;
+        min-width: 0 !important;
+    }
+    
+    .filter-group-inline select,
+    .filter-group-inline input[type="date"],
+    .filter-group-inline input[type="month"],
+    .filter-group-inline input[type="number"] {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Tabel Rekapitulasi: satu baris header, kolom angka rata tengah dan lebar cukup agar tidak tumpang tindih */
+.table-rekapitulasi { table-layout: fixed; width: 100%; }
+.table-rekapitulasi thead th { white-space: nowrap; padding: 12px 10px; }
+.table-rekapitulasi th:nth-child(1) { width: 55px; }
+.table-rekapitulasi th:nth-child(3),
+.table-rekapitulasi th:nth-child(4),
+.table-rekapitulasi th:nth-child(5) { width: 85px; min-width: 85px; }
+.table-rekapitulasi td:nth-child(3),
+.table-rekapitulasi td:nth-child(4),
+.table-rekapitulasi td:nth-child(5) { text-align: center; }
+

@@ -1,0 +1,673 @@
+/**
+ * FILE: assets/css/pendaftaran_awal.css
+ * FUNGSI: Styles khusus untuk halaman form pendaftaran awal pasien
+ * 
+ * CARA MENGUBAH:
+ * ============================================
+ * 1. JARAK ANTAR KOLOM:
+ *    .form-row { gap: 30px; } → ubah 30px menjadi angka lain (contoh: 40px untuk lebih jauh)
+ * 
+ * 2. JARAK ANTAR FIELD:
+ *    .form-col { gap: 20px; } → ubah 20px untuk mengatur jarak antar field dalam 1 kolom
+ * 
+ * 3. PADDING FORM (jarak isi form dengan tepi card):
+ *    .data-pasien-form { padding: 20px 20px 24px; }
+ *    Format: atas kanan bawah kiri
+ *    Contoh ubah: padding: 30px 25px 30px 25px; (lebih besar semua sisi)
+ * 
+ * 4. UBAH LAYOUT DARI 2 KOLOM KE 1 KOLOM:
+ *    .form-row { grid-template-columns: 1fr; } → ubah dari minmax(0, 1fr) minmax(0, 1fr)
+ * 
+ * 5. JARAK ANTAR INPUT DALAM 1 FIELD (label dengan input):
+ *    .form-group { gap: 8px; } → ubah 8px menjadi angka lain
+ */
+
+/* ============================================
+   FORM CONTAINER
+   ============================================ */
+.data-pasien-form {
+    /* PADDING FORM - Jarak isi form dengan tepi card */
+    padding: 24px 24px 28px;
+    box-sizing: border-box;
+}
+
+/* ============================================
+   FORM ROW - LAYOUT 2 KOLOM
+   ============================================ */
+.form-row {
+    display: grid;  /* Layout grid untuk 2 kolom */
+    
+    /* GRID TEMPLATE COLUMNS - Mengatur lebar kolom
+       minmax(0, 1fr) mencegah kolom kanan "melebar" keluar card
+       
+       UNTUK UBAH LAYOUT:
+       - Tetap 2 kolom: grid-template-columns: 1fr 1fr; (atau 2fr 3fr untuk perbandingan)
+       - 1 kolom: grid-template-columns: 1fr;
+       - 3 kolom: grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    
+    /* GAP - Jarak antar kolom kiri dan kanan
+       Ubah 30px menjadi angka lain untuk mengatur jarak kolom:
+       - Lebih jauh: gap: 40px; atau gap: 50px;
+       - Lebih dekat: gap: 20px; atau gap: 15px; */
+    gap: 36px;
+    margin-bottom: 32px;
+    align-items: start;
+}
+
+/* ============================================
+   FORM COLUMN
+   ============================================ */
+.form-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 0;
+}
+
+/* ============================================
+   FORM GROUP - Container untuk 1 field (label + input)
+   ============================================ */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+/* ============================================
+   LABEL FIELD - Teks label di atas input
+   ============================================ */
+.form-group label {
+    /* FONT WEIGHT - Ketebalan font label
+       Nilai 600 = semi-bold (tebal sedang)
+       Ubah ke 700 untuk lebih tebal, atau 500 untuk lebih tipis */
+    font-weight: 600;
+    
+    /* COLOR - Warna teks label
+       Menggunakan CSS variable --text (biasanya hitam/abu-abu gelap)
+       Ubah ke warna lain jika perlu: color: #333; atau color: #000; */
+    color: var(--text);
+    
+    /* FONT SIZE - Ukuran font label
+       Ubah 14px untuk lebih besar/kecil:
+       - Lebih besar: font-size: 16px; atau 18px;
+       - Lebih kecil: font-size: 12px; atau 13px; */
+    font-size: 14px;
+}
+
+/* ============================================
+   INPUT BOX - Kotak input untuk form
+   ============================================ */
+.form-group .form-input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--text);
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    min-height: 42px;
+}
+
+/* Select: panah custom, tinggi sama dengan input */
+.form-group select.form-input {
+    min-height: 42px;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 36px;
+}
+
+.form-group input[type="date"],
+.form-group input[type="number"] {
+    min-height: 42px;
+}
+
+/* ============================================
+   INPUT FOCUS STATE - Style saat input diklik/difokuskan
+   ============================================ */
+.form-group .form-input:focus {
+    /* OUTLINE NONE - Menghapus outline default browser
+       Diganti dengan border-color dan box-shadow untuk styling custom */
+    outline: none;
+    
+    /* BORDER COLOR - Warna border saat input difokuskan
+       Menggunakan CSS variable --primary (biasanya biru)
+       Ubah ke warna lain: border-color: #3b82f6; atau border-color: green; */
+    border-color: var(--primary);
+    
+    /* BOX SHADOW - Shadow hijau lembut saat input difokuskan
+       Format: box-shadow: x-offset y-offset blur spread color;
+       rgba(21, 128, 61, 0.14) = hijau dengan opacity 14% */
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.14);
+}
+
+/* ============================================
+   TEXTAREA - Input untuk teks panjang (alamat, keluhan, dll)
+   ============================================ */
+.form-group textarea.form-input {
+    resize: vertical;
+    min-height: 88px;
+    padding: 11px 14px;
+    font-size: 14px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+/* ============================================
+   INLINE FORM ROW - Input bersebelahan (Tempat/Tgl Lahir, L/P Umur)
+   ============================================ */
+.form-row-inline {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    align-items: stretch;
+}
+
+.form-row-inline .form-input,
+.form-row-inline select.form-input {
+    min-height: 42px;
+}
+
+/* ============================================
+   CHECKBOX/RADIO GROUP - Untuk PASIEN (BPJS/NON BPJS), LAMA/BARU
+   ============================================ */
+.checkbox-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.checkbox-group + .checkbox-group {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+}
+
+/* Jarak blok Jenis BPJS saat muncul (setelah pilih BPJS), dari grup LAMA/BARU */
+#jenis_bpjs_group {
+    margin-top: 10px;
+}
+
+/* ============================================
+   CHECKBOX/RADIO LABEL - Container untuk 1 checkbox/radio (input + label text)
+   ============================================ */
+.checkbox-label {
+    /* DISPLAY FLEX - Menggunakan flexbox untuk menyusun checkbox dan teks
+       Checkbox dan teks akan diletakkan bersebelahan secara horizontal */
+    display: flex;
+    
+    /* ALIGN ITEMS CENTER - Vertikal center (checkbox sejajar dengan teks)
+       Memastikan checkbox dan teks berada di tengah vertikal
+       Ubah ke: align-items: flex-start; (rata atas) atau flex-end; (rata bawah) */
+    align-items: center;
+    
+    /* GAP - Jarak antara checkbox/radio dengan teks label
+       Ubah 8px untuk mengatur jarak checkbox dengan teks "BPJS"/"NON BPJS":
+       - Lebih jauh: gap: 10px; atau gap: 12px;
+       - Lebih dekat: gap: 5px; atau gap: 6px; */
+    gap: 8px;
+    
+    /* CURSOR POINTER - Cursor menjadi pointer saat hover
+       Memberikan indikasi visual bahwa elemen bisa diklik
+       Ubah ke: cursor: default; (cursor normal) */
+    cursor: pointer;
+    
+    /* FONT WEIGHT - Ketebalan font label checkbox/radio
+       Normal = tidak tebal (berbeda dengan label form biasa)
+       Ubah ke: font-weight: 500; (sedikit tebal) atau 600; (lebih tebal) */
+    font-weight: normal;
+}
+
+/* ============================================
+   CHECKBOX/RADIO INPUT - Style checkbox dan radio button
+   ============================================ */
+.checkbox-label input[type="checkbox"],
+.checkbox-label input[type="radio"] {
+    /* WIDTH & HEIGHT - Ukuran checkbox/radio button
+       Ubah untuk lebih besar/kecil:
+       - Lebih besar: width: 20px; height: 20px;
+       - Lebih kecil: width: 16px; height: 16px;
+       Pastikan width dan height sama untuk bentuk persegi/sirkel sempurna */
+    width: 18px;
+    height: 18px;
+    
+    /* CURSOR POINTER - Cursor menjadi pointer saat hover
+       Memberikan indikasi visual bahwa checkbox/radio bisa diklik
+       Ubah ke: cursor: default; (cursor normal) */
+    cursor: pointer;
+    
+    /* ACCENT COLOR - Warna checkbox/radio saat dicentang/dipilih
+       Menggunakan CSS variable --primary (biasanya biru)
+       Ubah ke warna lain: accent-color: #3b82f6; (biru) atau accent-color: green; (hijau) */
+    accent-color: var(--primary);
+}
+
+/* ============================================
+   CHECKBOX/RADIO TEXT - Teks label checkbox/radio
+   ============================================ */
+.checkbox-label span {
+    /* FONT SIZE - Ukuran font teks label checkbox/radio
+       Ubah untuk lebih besar/kecil:
+       - Lebih besar: font-size: 16px; atau 18px;
+       - Lebih kecil: font-size: 12px; atau 13px; */
+    font-size: 14px;
+    
+    /* COLOR - Warna teks label checkbox/radio
+       Menggunakan CSS variable --text (biasanya hitam/abu-abu gelap)
+       Ubah ke warna lain: color: #333; atau color: #000; */
+    color: var(--text);
+}
+
+/* ============================================
+   SELECT DROPDOWN OPTION - Biarkan browser menggunakan style default
+   untuk konsistensi tampilan
+   ============================================ */
+/* Biarkan browser menggunakan style default untuk option hover/selected */
+
+/* ============================================
+   FORM ACTIONS - Area tombol (Simpan Data, dll)
+   ============================================ */
+.form-actions {
+    /* DISPLAY FLEX - Menggunakan flexbox untuk layout horizontal tombol
+       Tombol akan diletakkan bersebelahan secara horizontal */
+    display: flex;
+    
+    /* GAP - Jarak antar tombol (jika ada lebih dari 1 tombol)
+       Ubah 15px untuk mengatur jarak:
+       - Lebih jauh: gap: 20px; atau gap: 25px;
+       - Lebih dekat: gap: 10px; atau gap: 8px; */
+    gap: 15px;
+    
+    /* PADDING TOP - Jarak atas area tombol dari konten di atasnya
+       Memberikan ruang antara garis pemisah dengan tombol
+       Ubah 20px untuk mengatur jarak:
+       - Lebih jauh: padding-top: 30px; atau 35px;
+       - Lebih dekat: padding-top: 15px; atau 10px; */
+    padding-top: 20px;
+    
+    /* BORDER TOP - Garis pemisah di atas tombol
+       Memisahkan area tombol dengan konten form di atasnya
+       Menggunakan CSS variable --border (biasanya abu-abu terang)
+       Ubah ketebalan: border-top: 2px solid var(--border);
+       Hapus garis: border-top: none; */
+    border-top: 1px solid var(--border);
+    
+    /* MARGIN TOP - Jarak tambahan dari konten di atasnya
+       Memberikan ruang antara form row terakhir dengan area tombol
+       Ubah 20px jika perlu lebih jauh/dekat:
+       - Lebih jauh: margin-top: 30px; atau 40px;
+       - Lebih dekat: margin-top: 15px; atau 10px; */
+    margin-top: 20px;
+}
+
+/* ============================================
+   BUTTON BASE - Style dasar untuk semua tombol
+   ============================================ */
+.btn {
+    /* PADDING - Jarak dalam tombol (teks dengan tepi tombol)
+       Format: padding: atas-bawah kiri-kanan;
+       Ubah untuk lebih besar/kecil:
+       - Lebih besar: padding: 14px 28px;
+       - Lebih kecil: padding: 10px 20px; */
+    padding: 12px 24px;
+    
+    /* BORDER NONE - Menghapus border default
+       Border akan ditambahkan di variant tertentu (seperti btn-secondary) */
+    border: none;
+    
+    /* BORDER RADIUS - Sudut melengkung pada tombol
+       Menggunakan CSS variable --radius (biasanya 6-8px)
+       Ubah untuk lebih tajam: border-radius: 0; atau lebih melengkung: border-radius: 12px; */
+    border-radius: var(--radius);
+    
+    /* FONT SIZE - Ukuran font teks tombol
+       Ubah untuk lebih besar/kecil:
+       - Lebih besar: font-size: 16px;
+       - Lebih kecil: font-size: 12px; */
+    font-size: 14px;
+    
+    /* FONT WEIGHT - Ketebalan font tombol
+       Nilai 600 = semi-bold (tebal sedang)
+       Ubah ke 700 untuk lebih tebal, atau 500 untuk lebih tipis */
+    font-weight: 600;
+    
+    /* CURSOR POINTER - Cursor menjadi pointer saat hover
+       Memberikan indikasi visual bahwa tombol bisa diklik */
+    cursor: pointer;
+    
+    /* TRANSITION - Animasi smooth saat hover/focus
+       Durasi 0.2s untuk transisi yang halus
+       Ubah durasi: transition: all 0.3s; (lebih lambat) */
+    transition: all 0.2s;
+    
+    /* TEXT DECORATION NONE - Menghapus underline jika digunakan sebagai link
+       Berguna jika tombol dibuat dengan tag <a> */
+    text-decoration: none;
+    
+    /* DISPLAY INLINE BLOCK - Membuat tombol bisa diatur lebar/tinggi
+       Tetap inline tapi bisa diberi padding dan margin */
+    display: inline-block;
+    
+    /* TEXT ALIGN CENTER - Teks di tengah tombol
+       Memastikan teks selalu berada di tengah tombol */
+    text-align: center;
+}
+
+/* ============================================
+   BUTTON PRIMARY - Tombol utama (Simpan Data)
+   ============================================ */
+.btn-primary {
+    /* BACKGROUND - Warna latar belakang tombol utama
+       Menggunakan CSS variable --primary (biasanya biru)
+       Ubah ke warna lain: background: #3b82f6; atau background: green; */
+    background: var(--primary);
+    
+    /* COLOR - Warna teks tombol utama
+       Putih untuk kontras dengan background biru */
+    color: white;
+}
+
+/* Hover state untuk tombol utama */
+.btn-primary:hover {
+    /* BACKGROUND - Warna latar belakang saat hover
+       Menggunakan CSS variable --primary-dark (biru lebih gelap)
+       Memberikan efek visual saat mouse berada di atas tombol */
+    background: var(--primary-dark);
+    
+    /* TRANSFORM - Menggeser tombol sedikit ke atas saat hover
+       translateY(-1px) = geser 1px ke atas
+       Ubah ke: transform: translateY(-2px); (lebih naik) atau hapus untuk tidak ada efek */
+    transform: translateY(-1px);
+    
+    /* BOX SHADOW - Shadow biru saat hover
+       Format: box-shadow: x-offset y-offset blur spread color;
+       rgba(59, 130, 246, 0.3) = biru dengan opacity 30%
+       Ubah opacity: rgba(59, 130, 246, 0.5); (lebih terlihat) */
+    box-shadow: 0 4px 12px rgba(21, 128, 61, 0.25);
+}
+
+/* ============================================
+   BUTTON SECONDARY - Tombol sekunder (Batal, dll)
+   ============================================ */
+.btn-secondary {
+    /* BACKGROUND - Warna latar belakang tombol sekunder
+       Menggunakan CSS variable --bg (biasanya putih/abu-abu sangat terang)
+       Ubah ke warna lain: background: #f9fafb; */
+    background: var(--bg);
+    
+    /* COLOR - Warna teks tombol sekunder
+       Menggunakan CSS variable --text (biasanya hitam/abu-abu gelap) */
+    color: var(--text);
+    
+    /* BORDER - Garis tepi tombol sekunder
+       Menggunakan CSS variable --border (biasanya abu-abu terang)
+       Memberikan efek outline pada tombol */
+    border: 1px solid var(--border);
+}
+
+/* Hover state untuk tombol sekunder */
+.btn-secondary:hover {
+    /* BACKGROUND - Warna latar belakang saat hover
+       Menggunakan CSS variable --card (biasanya putih)
+       Memberikan efek visual saat mouse berada di atas tombol */
+    background: var(--card);
+    
+    /* BORDER COLOR - Warna border saat hover
+       Menggunakan CSS variable --primary (biru)
+       Border berubah menjadi biru saat hover */
+    border-color: var(--primary);
+}
+
+/* ============================================
+   DESKTOP LAYOUT - Rapikan form pendaftaran awal
+   ============================================ */
+@media (min-width: 769px) {
+    .page-header {
+        margin-bottom: 28px;
+    }
+
+    .card:has(.data-pasien-form) {
+        padding: 28px 32px 32px;
+        border-radius: 14px;
+    }
+
+    .card:has(.data-pasien-form) .card-header {
+        margin-bottom: 24px;
+        padding-bottom: 18px;
+        border-bottom: 2px solid var(--border);
+    }
+
+    .card:has(.data-pasien-form) .card-header h2 {
+        font-size: 20px;
+        font-weight: 700;
+        margin: 0;
+    }
+
+    .data-pasien-form {
+        padding: 0 4px 12px 4px;
+    }
+
+    .form-row-inline {
+        gap: 14px;
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN - Tablet & Mobile
+   ============================================ */
+
+/* TABLET & MOBILE (lebar layar <= 768px) */
+@media (max-width: 768px) {
+    /* Page header - padding konsisten dan center di mobile */
+    .page-header {
+        padding: 20px 16px;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+    .page-header h1 { 
+        font-size: 22px; 
+        margin-bottom: 8px;
+    }
+    .page-header p { 
+        font-size: 13px; 
+        color: var(--muted);
+        margin: 0;
+    }
+
+    /* Card container - padding konsisten di mobile */
+    .card:has(.data-pasien-form) {
+        padding: 20px 16px 24px;
+        border-radius: 12px;
+    }
+    
+    /* Card header - spacing rapi */
+    .card:has(.data-pasien-form) .card-header {
+        margin-bottom: 20px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid var(--border);
+    }
+    .card:has(.data-pasien-form) .card-header h2 {
+        font-size: 18px;
+        margin: 0;
+        text-align: center;
+    }
+
+    /* Form padding - konsisten di mobile */
+    .data-pasien-form {
+        padding: 0;
+    }
+
+    /* FORM ROW - 2 kolom jadi 1 kolom, jarak konsisten */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        margin-bottom: 28px;
+    }
+
+    /* Pemisah visual antar kolom saat stack di mobile */
+    .form-row .form-col:not(:first-child) {
+        padding-top: 24px;
+        border-top: 1px solid var(--border);
+        margin-top: 4px;
+    }
+
+    /* FORM COL - jarak antar field konsisten */
+    .form-col {
+        gap: 18px;
+    }
+
+    /* FORM GROUP - jarak label–input konsisten */
+    .form-group {
+        gap: 8px;
+    }
+    .form-group label {
+        font-size: 13px;
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    /* Input touch-friendly: min-height 44px, font 16px untuk hindari zoom iOS */
+    .form-group .form-input {
+        min-height: 44px;
+        padding: 12px 14px;
+        font-size: 16px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    /* Textarea - tinggi cukup untuk mobile */
+    .form-group textarea.form-input {
+        min-height: 100px;
+        padding: 12px 14px;
+        font-size: 16px;
+        resize: vertical;
+    }
+
+    /* FORM ROW INLINE - Tempat/Tgl Lahir, L/P+Umur: stack vertikal */
+    .form-row-inline {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* CHECKBOX GROUP - vertikal di mobile, jarak konsisten */
+    .checkbox-group {
+        flex-direction: column;
+        gap: 14px;
+        align-items: flex-start;
+    }
+    .checkbox-group + .checkbox-group {
+        margin-top: 14px;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    /* FORM ACTIONS - tombol full width, spacing rapi */
+    .form-actions {
+        flex-direction: column;
+        padding-top: 24px;
+        margin-top: 24px;
+        gap: 12px;
+    }
+    .form-actions .btn {
+        width: 100%;
+        padding: 14px 20px;
+        font-size: 15px;
+        font-weight: 600;
+    }
+}
+
+/* MOBILE KECIL (lebar layar <= 480px) */
+@media (max-width: 480px) {
+    /* Page header - lebih compact untuk layar kecil */
+    .page-header {
+        padding: 16px 12px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .page-header h1 { 
+        font-size: 20px; 
+        margin-bottom: 6px;
+    }
+    .page-header p { 
+        font-size: 12px; 
+        margin: 0;
+    }
+
+    /* Card container - padding lebih compact */
+    .card:has(.data-pasien-form) {
+        padding: 16px 12px 20px;
+        border-radius: 10px;
+    }
+    .card:has(.data-pasien-form) .card-header {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+    }
+    .card:has(.data-pasien-form) .card-header h2 {
+        font-size: 17px;
+    }
+
+    /* Form row - spacing lebih compact */
+    .form-row {
+        gap: 24px;
+        margin-bottom: 24px;
+    }
+    .form-row .form-col:not(:first-child) {
+        padding-top: 20px;
+        margin-top: 4px;
+    }
+    
+    /* Form column - gap sedikit lebih kecil */
+    .form-col { 
+        gap: 16px; 
+    }
+    
+    /* Form group - spacing konsisten */
+    .form-group { 
+        gap: 8px; 
+    }
+    .form-group label {
+        font-size: 12px;
+    }
+    
+    /* Input - tetap touch-friendly */
+    .form-group .form-input {
+        min-height: 44px;
+        padding: 11px 12px;
+        font-size: 16px;
+    }
+    .form-group textarea.form-input {
+        min-height: 90px;
+        padding: 11px 12px;
+        font-size: 16px;
+    }
+    
+    /* Form row inline - gap lebih kecil */
+    .form-row-inline { 
+        gap: 10px; 
+    }
+    
+    /* Checkbox group - spacing lebih compact */
+    .checkbox-group {
+        gap: 12px;
+    }
+    .checkbox-group + .checkbox-group {
+        margin-top: 12px;
+    }
+    
+    /* Form actions - spacing konsisten */
+    .form-actions {
+        padding-top: 20px;
+        margin-top: 20px;
+        gap: 10px;
+    }
+    .form-actions .btn {
+        padding: 13px 18px;
+        font-size: 14px;
+    }
+}
+

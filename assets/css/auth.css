@@ -1,0 +1,290 @@
+/**
+ * FILE: assets/css/auth.css
+ * FUNGSI: Style untuk form login dan register
+ * 
+ * Digunakan bersama dengan landing.css untuk halaman auth
+ */
+
+/* =========================================================
+   AUTH CARD (FORM CONTAINER)
+   ========================================================= */
+
+.auth-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 40px 36px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+}
+
+/* =========================================================
+   AUTH HEADER (JUDUL)
+   ========================================================= */
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.auth-title {
+    margin: 0 0 6px;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.auth-subtitle {
+    margin: 0;
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+}
+
+/* =========================================================
+   AUTH FORM
+   ========================================================= */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.auth-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.auth-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.auth-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    background: #f8fafc;
+    transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+    box-sizing: border-box;
+}
+
+.auth-input:hover {
+    border-color: #cbd5e1;
+}
+
+.auth-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(21, 128, 61, 0.14);
+}
+
+/* Placeholder styling */
+.auth-input::placeholder {
+    color: #94a3b8;
+}
+
+/* =========================================================
+   PASSWORD INPUT WRAPPER (dengan toggle visibility)
+   ========================================================= */
+
+.auth-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.auth-input-wrapper .auth-input {
+    padding-right: 48px; /* ruang untuk tombol toggle */
+}
+
+.auth-toggle-password {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.auth-toggle-password:hover {
+    color: var(--text);
+}
+
+.auth-toggle-password.active {
+    color: var(--primary);
+}
+
+.auth-toggle-password .eye-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* =========================================================
+   AUTH BUTTON
+   ========================================================= */
+
+.auth-btn {
+    width: 100%;
+    padding: 14px 20px;
+    margin-top: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+}
+
+/* =========================================================
+   AUTH LINK (sudah punya akun? / belum punya akun?)
+   ========================================================= */
+
+.auth-link {
+    text-align: center;
+    font-size: 14px;
+    color: var(--muted);
+    margin: 4px 0 0;
+}
+
+.auth-link a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-link a:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+   AUTH ALERT (pesan error/success)
+   ========================================================= */
+
+.auth-alert {
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.auth-alert-error {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.auth-alert-success {
+    background: #f0fdf4;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 640px) {
+    /* Pastikan card center di mobile */
+    .landing-hero {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .auth-card {
+        padding: 28px 20px;
+        border-radius: 14px;
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .auth-header {
+        margin-bottom: 20px;
+    }
+
+    .auth-title {
+        font-size: 20px;
+    }
+
+    .auth-subtitle {
+        font-size: 13px;
+    }
+
+    .auth-form {
+        gap: 14px;
+    }
+
+    .auth-field {
+        gap: 6px;
+    }
+
+    .auth-label {
+        font-size: 12px;
+    }
+
+    .auth-input {
+        padding: 12px 14px;
+        font-size: 16px; /* mencegah zoom di iOS */
+        border-radius: 8px;
+    }
+
+    .auth-input-wrapper .auth-input {
+        padding-right: 44px;
+    }
+
+    .auth-toggle-password {
+        right: 10px;
+    }
+
+    .auth-toggle-password .eye-icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    .auth-btn {
+        padding: 12px 16px;
+        font-size: 14px;
+        margin-top: 4px;
+    }
+
+    .auth-link {
+        font-size: 13px;
+        margin-top: 2px;
+    }
+
+    .auth-alert {
+        padding: 12px 14px;
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+}
+
+@media (max-width: 400px) {
+    .auth-card {
+        padding: 24px 16px;
+    }
+
+    .auth-title {
+        font-size: 18px;
+    }
+}

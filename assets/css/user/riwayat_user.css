@@ -1,0 +1,666 @@
+/* ============================================
+   RIWAYAT USER PAGE STYLES
+   ============================================
+   File: riwayat_user.css
+   Deskripsi: Styles khusus untuk halaman riwayat kunjungan user
+   ============================================ */
+
+/* ============================================
+   1. TABLE STYLES
+   ============================================
+   Styles untuk tabel riwayat kunjungan
+   ============================================ */
+
+/* Container Tabel */
+.table-container {
+    /* OVERFLOW X AUTO - Scroll horizontal jika tabel terlalu lebar
+       Berguna untuk tabel dengan banyak kolom di layar kecil
+       Ubah ke: overflow-x: hidden; (tidak ada scroll, potong konten) */
+    overflow-x: auto;
+    
+    /* MARGIN TOP - Jarak atas dari elemen sebelumnya (20px)
+       Ubah untuk lebih jauh/dekat: margin-top: 30px; atau 15px; */
+    margin-top: 20px;
+}
+
+/* Tabel Data */
+.data-table {
+    /* WIDTH - Lebar penuh container */
+    width: 100%;
+    
+    /* BORDER COLLAPSE - Gabungkan border sel yang berdekatan
+       Membuat border terlihat lebih rapi dan tidak double */
+    border-collapse: collapse;
+    
+    /* BACKGROUND - Background putih untuk tabel */
+    background: white;
+    
+    /* BORDER RADIUS - Sudut melengkung 12px untuk tabel
+       Ubah untuk lebih bulat/tajam: border-radius: 16px; atau 8px; */
+    border-radius: 12px;
+    
+    /* OVERFLOW HIDDEN - Potong konten yang keluar dari border radius
+       Membuat sudut melengkung terlihat rapi */
+    overflow: hidden;
+}
+
+/* Table Header */
+.data-table thead {
+    /* BACKGROUND - Gradien hijau untuk header tabel */
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    
+    /* COLOR - Warna teks putih (kontras dengan background gradien) */
+    color: white;
+}
+
+/* Header Cell Tabel */
+.data-table th {
+    /* PADDING - Jarak dalam cell header (15px atas-bawah, 12px kiri-kanan)
+       Ubah untuk lebih besar/kecil: padding: 18px 15px; atau 12px 10px; */
+    padding: 15px 12px;
+    
+    /* TEXT ALIGN - Teks rata kiri secara default
+       Gunakan class .text-center pada th tertentu
+       jika ingin angka benar-benar di tengah */
+    text-align: left;
+    
+    /* FONT WEIGHT - Tebal 600 (semi-bold) */
+    font-weight: 600;
+    
+    /* FONT SIZE - Ukuran font 14px
+       Ubah untuk lebih besar/kecil: font-size: 16px; atau 12px; */
+    font-size: 14px;
+    
+    /* TEXT TRANSFORM - Ubah semua huruf menjadi kapital
+       Membuat header terlihat lebih formal */
+    text-transform: uppercase;
+    
+    /* LETTER SPACING - Jarak antar huruf (0.5px)
+       Memberikan spacing yang rapi untuk teks kapital
+       Ubah untuk lebih lebar/rapat: letter-spacing: 1px; atau 0px; */
+    letter-spacing: 0.5px;
+    
+    /* VERTICAL ALIGN - Vertikal center untuk header */
+    vertical-align: middle;
+}
+
+/* Table Body */
+.data-table td {
+    /* PADDING - Jarak dalam cell body (15px atas-bawah, 12px kiri-kanan)
+       Sama dengan header untuk konsistensi
+       Ubah untuk lebih besar/kecil: padding: 18px 15px; atau 12px 10px; */
+    padding: 15px 12px;
+    
+    /* BORDER BOTTOM - Garis bawah setiap cell (border abu-abu)
+       Menggunakan CSS variable --border (biasanya abu-abu terang)
+       Membuat baris tabel terlihat jelas */
+    border-bottom: 1px solid var(--border);
+    
+    /* FONT SIZE - Ukuran font 14px (sama dengan header)
+       Ubah untuk lebih besar/kecil: font-size: 16px; atau 12px; */
+    font-size: 14px;
+    
+    /* VERTICAL ALIGN - Vertikal center untuk cell */
+    vertical-align: middle;
+}
+
+/* Alignment kolom "No" (kolom pertama) - center alignment untuk konsistensi */
+.data-table th:first-child,
+.data-table td:first-child {
+    text-align: center;
+    width: 60px;
+    min-width: 60px;
+}
+
+/* Utility: teks tengah khusus di dalam tabel data (th/td)
+   Digunakan di halaman riwayat agar header angka sejajar dengan datanya */
+.data-table th.text-center,
+.data-table td.text-center {
+    text-align: center;
+}
+
+/* Baris Body Tabel */
+.data-table tbody tr {
+    /* TRANSITION - Animasi smooth saat hover
+       Durasi 0.2s untuk transisi background yang halus
+       Ubah durasi: transition: background 0.3s; (lebih lambat) */
+    transition: background 0.2s;
+}
+
+/* Hover State Baris Tabel */
+.data-table tbody tr:hover {
+    /* BACKGROUND - Background abu-abu sangat terang saat hover
+       #f8fafc = abu-abu sangat terang
+       Memberikan efek visual saat mouse berada di atas baris
+       Ubah warna: background: #f3f4f6; atau #f9fafb; */
+    background: #f8fafc;
+}
+
+/* Baris Terakhir - Hapus border bawah */
+.data-table tbody tr:last-child td {
+    /* BORDER BOTTOM NONE - Hapus border bawah pada baris terakhir
+       Border sudah cukup dari border-radius tabel */
+    border-bottom: none;
+}
+
+/* Number Badge - Badge untuk nomor antrian */
+.number-badge-small {
+    /* DISPLAY INLINE BLOCK - Tampil inline tapi bisa diatur lebar/tinggi */
+    display: inline-block;
+    
+    /* PADDING - Jarak dalam badge (6px atas-bawah, 12px kiri-kanan)
+       Ubah untuk lebih besar/kecil: padding: 8px 16px; atau 4px 8px; */
+    padding: 6px 12px;
+    
+    /* BACKGROUND - Gradien biru untuk badge
+       linear-gradient(135deg, var(--primary), var(--primary-dark))
+       - Menggunakan CSS variable --primary dan --primary-dark
+       - Gradien dari biru ke biru gelap */
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    
+    /* COLOR - Warna teks putih (kontras dengan background biru) */
+    color: white;
+    
+    /* BORDER RADIUS - Sudut melengkung 8px (bulat)
+       Ubah untuk lebih bulat/tajam: border-radius: 12px; atau 4px; */
+    border-radius: 8px;
+    
+    /* FONT WEIGHT - Tebal 700 (bold) */
+    font-weight: 700;
+    
+    /* FONT SIZE - Ukuran font 14px
+       Ubah untuk lebih besar/kecil: font-size: 16px; atau 12px; */
+    font-size: 14px;
+    
+    /* MIN WIDTH - Lebar minimal 40px
+       Memastikan badge tidak terlalu kecil untuk nomor yang panjang
+       Ubah untuk lebih lebar/sempit: min-width: 50px; atau 30px; */
+    min-width: 40px;
+    
+    /* TEXT ALIGN - Teks di tengah badge */
+    text-align: center;
+}
+
+
+/* ============================================
+   2. MODAL STYLES
+   ============================================
+   Styles untuk modal detail riwayat
+   ============================================ */
+
+/* Modal Container - Overlay Background */
+.modal {
+    /* DISPLAY NONE - Sembunyi secara default, muncul saat class 'active' ditambahkan
+       Ubah ke: display: block; (selalu tampil untuk testing) */
+    display: none;
+    
+    /* POSITION FIXED - Posisi fixed untuk overlay fullscreen
+       Modal akan tetap di tempat saat scroll */
+    position: fixed;
+    
+    /* Z-INDEX - Layer di atas konten lain (1000 = sangat tinggi)
+       Memastikan modal selalu terlihat di atas konten */
+    z-index: 1000;
+    
+    /* LEFT & TOP - Posisi di pojok kiri atas (fullscreen) */
+    left: 0;
+    top: 0;
+    
+    /* WIDTH & HEIGHT - Lebar dan tinggi penuh layar (100%)
+       Modal akan menutupi seluruh layar */
+    width: 100%;
+    height: 100%;
+    
+    /* BACKGROUND COLOR - Background hitam transparan (overlay)
+       rgba(0,0,0,0.5) = hitam dengan opacity 50%
+       Memberikan efek gelap di belakang modal
+       Ubah opacity: rgba(0,0,0,0.6); (lebih gelap) atau rgba(0,0,0,0.4); (lebih terang) */
+    background-color: rgba(0,0,0,0.5);
+    
+    /* OVERFLOW AUTO - Scroll jika konten modal terlalu panjang */
+    overflow: auto;
+    
+    /* ANIMATION - Animasi fade in saat modal muncul
+       fadeIn 0.3s = durasi animasi 0.3 detik
+       Ubah durasi: animation: fadeIn 0.5s; (lebih lambat) */
+    animation: fadeIn 0.3s;
+}
+
+/* Animasi Fade In - Modal muncul dari transparan ke opaque */
+@keyframes fadeIn {
+    /* FROM - State awal (transparan) */
+    from { 
+        opacity: 0;  /* Opacity 0 = tidak terlihat */
+    }
+    /* TO - State akhir (terlihat penuh) */
+    to { 
+        opacity: 1;  /* Opacity 1 = terlihat penuh */
+    }
+}
+
+/* Modal Content - Konten Modal */
+.modal-content {
+    /* BACKGROUND COLOR - Background putih untuk konten modal */
+    background-color: white;
+    
+    /* MARGIN - Margin 5% dari atas, auto kiri-kanan (center horizontal)
+       Modal akan berada di tengah layar secara horizontal
+       Ubah posisi: margin: 10% auto; (lebih rendah) atau margin: 3% auto; (lebih tinggi) */
+    margin: 5% auto;
+    
+    /* PADDING - Jarak dalam modal (40px di semua sisi)
+       Ubah untuk lebih besar/kecil: padding: 50px; atau 30px; */
+    padding: 40px;
+    
+    /* BORDER RADIUS - Sudut melengkung 20px (bulat)
+       Ubah untuk lebih bulat/tajam: border-radius: 25px; atau 15px; */
+    border-radius: 20px;
+    
+    /* WIDTH - Lebar 90% dari container (responsive)
+       Di layar kecil akan lebih sempit */
+    width: 90%;
+    
+    /* MAX WIDTH - Lebar maksimal 600px (di layar besar tidak terlalu lebar)
+       Ubah untuk lebih lebar/sempit: max-width: 700px; atau 500px; */
+    max-width: 600px;
+    
+    /* BOX SHADOW - Bayangan besar di bawah modal
+       rgba(0,0,0,0.3) = hitam dengan opacity 30%
+       Memberikan efek modal "terangkat" di atas overlay
+       Ubah opacity: rgba(0,0,0,0.4); (lebih gelap) atau rgba(0,0,0,0.2); (lebih terang) */
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    
+    /* POSITION RELATIVE - Untuk positioning tombol close di dalam */
+    position: relative;
+    
+    /* ANIMATION - Animasi slide down saat modal muncul
+       slideDown 0.3s = durasi animasi 0.3 detik
+       Modal akan "jatuh" dari atas */
+    animation: slideDown 0.3s;
+}
+
+/* Animasi Slide Down - Modal muncul dari atas ke bawah */
+@keyframes slideDown {
+    /* FROM - State awal (di atas, transparan) */
+    from {
+        transform: translateY(-50px);  /* Geser 50px ke atas */
+        opacity: 0;                     /* Tidak terlihat */
+    }
+    /* TO - State akhir (di posisi, terlihat penuh) */
+    to {
+        transform: translateY(0);       /* Di posisi normal (tidak geser) */
+        opacity: 1;                     /* Terlihat penuh */
+    }
+}
+
+/* Close Button - Tombol Tutup Modal */
+.close {
+    /* POSITION ABSOLUTE - Posisi absolute relatif terhadap .modal-content
+       Tombol akan berada di pojok kanan atas modal */
+    position: absolute;
+    
+    /* RIGHT & TOP - Posisi di pojok kanan atas (20px dari pinggir)
+       Ubah posisi: right: 15px; top: 15px; (lebih dekat ke pinggir) */
+    right: 20px;
+    top: 20px;
+    
+    /* FONT SIZE - Ukuran font besar 32px untuk ikon X
+       Ubah untuk lebih besar/kecil: font-size: 36px; atau 28px; */
+    font-size: 32px;
+    
+    /* FONT WEIGHT - Tebal (bold) */
+    font-weight: bold;
+    
+    /* COLOR - Warna teks menggunakan CSS variable --muted (abu-abu)
+       Ubah ke warna lain: color: #6b7280; atau color: #9ca3af; */
+    color: var(--muted);
+    
+    /* CURSOR POINTER - Cursor menjadi pointer saat hover */
+    cursor: pointer;
+    
+    /* TRANSITION - Animasi smooth saat hover
+       Durasi 0.2s untuk transisi warna yang halus */
+    transition: color 0.2s;
+    
+    /* WIDTH & HEIGHT - Ukuran tombol 40px x 40px (area klik yang cukup besar)
+       Ubah untuk lebih besar/kecil: width: 45px; height: 45px; atau 35px; */
+    width: 40px;
+    height: 40px;
+    
+    /* DISPLAY FLEX - Menggunakan flexbox untuk center ikon di tengah tombol */
+    display: flex;
+    
+    /* ALIGN ITEMS & JUSTIFY CONTENT - Center ikon di tengah tombol */
+    align-items: center;
+    justify-content: center;
+    
+    /* BORDER RADIUS - Sudut melengkung 50% (bulat penuh)
+       Membuat tombol berbentuk lingkaran */
+    border-radius: 50%;
+}
+
+/* Hover State untuk Tombol Close */
+.close:hover {
+    /* COLOR - Warna teks menjadi lebih gelap saat hover
+       Menggunakan CSS variable --text (hitam/abu-abu gelap) */
+    color: var(--text);
+    
+    /* BACKGROUND - Background abu-abu terang saat hover
+       Menggunakan CSS variable --bg (abu-abu sangat terang)
+       Memberikan efek visual saat mouse berada di atas tombol */
+    background: var(--bg);
+}
+
+/* Modal Header - Judul Modal */
+.modal-content h2 {
+    /* MARGIN - Margin bawah 30px dari konten berikutnya
+       Format: margin: atas kanan bawah kiri */
+    margin: 0 0 30px 0;
+    
+    /* COLOR - Warna teks menggunakan CSS variable --text (hitam/abu-abu gelap) */
+    color: var(--text);
+    
+    /* FONT SIZE - Ukuran font 24px (besar dan menonjol)
+       Ubah untuk lebih besar/kecil: font-size: 28px; atau 20px; */
+    font-size: 24px;
+    
+    /* FONT WEIGHT - Tebal 700 (bold) */
+    font-weight: 700;
+    
+    /* PADDING BOTTOM - Jarak bawah 15px untuk garis pemisah */
+    padding-bottom: 15px;
+    
+    /* BORDER BOTTOM - Garis pemisah tebal 2px di bawah judul
+       Menggunakan CSS variable --border (abu-abu terang) */
+    border-bottom: 2px solid var(--border);
+}
+
+/* Detail Items - Item Detail dalam Modal */
+.detail-item {
+    /* MARGIN BOTTOM - Jarak bawah antar item (25px)
+       Ubah untuk lebih jauh/dekat: margin-bottom: 30px; atau 20px; */
+    margin-bottom: 25px;
+    
+    /* PADDING BOTTOM - Jarak bawah dalam item (20px) untuk garis pemisah */
+    padding-bottom: 20px;
+    
+    /* BORDER BOTTOM - Garis pemisah tipis 1px di bawah setiap item
+       Menggunakan CSS variable --border (abu-abu terang)
+       Membuat setiap item detail terpisah dengan jelas */
+    border-bottom: 1px solid var(--border);
+}
+
+/* Detail Item Terakhir - Hapus border dan margin */
+.detail-item:last-child {
+    /* BORDER BOTTOM NONE - Hapus border bawah pada item terakhir */
+    border-bottom: none;
+    
+    /* MARGIN BOTTOM - Hapus margin bawah */
+    margin-bottom: 0;
+    
+    /* PADDING BOTTOM - Hapus padding bawah */
+    padding-bottom: 0;
+}
+
+/* Label Detail Item */
+.detail-item label {
+    /* DISPLAY BLOCK - Tampil sebagai block (baris baru) */
+    display: block;
+    
+    /* FONT WEIGHT - Tebal 600 (semi-bold) */
+    font-weight: 600;
+    
+    /* COLOR - Warna teks menggunakan CSS variable --muted (abu-abu)
+       Label biasanya lebih terang dari value */
+    color: var(--muted);
+    
+    /* MARGIN BOTTOM - Jarak bawah label dari value (10px)
+       Memberikan ruang antara label dan value */
+    margin-bottom: 10px;
+    
+    /* FONT SIZE - Ukuran font kecil 13px
+       Label biasanya lebih kecil dari value
+       Ubah untuk lebih besar/kecil: font-size: 14px; atau 12px; */
+    font-size: 13px;
+    
+    /* TEXT TRANSFORM - Ubah semua huruf menjadi kapital
+       Membuat label terlihat lebih formal */
+    text-transform: uppercase;
+    
+    /* LETTER SPACING - Jarak antar huruf (0.5px)
+       Memberikan spacing yang rapi untuk teks kapital
+       Ubah untuk lebih lebar/rapat: letter-spacing: 1px; atau 0px; */
+    letter-spacing: 0.5px;
+}
+
+/* Value Detail Item */
+.detail-item p {
+    /* MARGIN - Hapus margin default */
+    margin: 0;
+    
+    /* COLOR - Warna teks menggunakan CSS variable --text (hitam/abu-abu gelap) */
+    color: var(--text);
+    
+    /* FONT SIZE - Ukuran font 16px (lebih besar dari label)
+       Ubah untuk lebih besar/kecil: font-size: 18px; atau 14px; */
+    font-size: 16px;
+    
+    /* LINE HEIGHT - Jarak antar baris (1.6 = 160% dari font size)
+       Ubah untuk lebih rapat/lebar: line-height: 1.7; atau 1.5; */
+    line-height: 1.6;
+}
+
+/* Small Text Detail Item (Catatan Tambahan) */
+.detail-item small {
+    /* COLOR - Warna teks menggunakan CSS variable --muted (abu-abu)
+       Teks kecil biasanya untuk catatan tambahan */
+    color: var(--muted);
+    
+    /* FONT SIZE - Ukuran font kecil 13px
+       Ubah untuk lebih besar/kecil: font-size: 14px; atau 12px; */
+    font-size: 13px;
+    
+    /* DISPLAY BLOCK - Tampil sebagai block (baris baru) */
+    display: block;
+    
+    /* MARGIN TOP - Jarak atas dari value (5px)
+       Memberikan ruang kecil antara value utama dan catatan */
+    margin-top: 5px;
+}
+
+/* Strong Text Detail Item (Untuk Highlight) */
+.detail-item strong {
+    /* COLOR - Warna teks menggunakan CSS variable --primary (biru)
+       Digunakan untuk highlight nilai penting */
+    color: var(--primary);
+    
+    /* FONT SIZE - Ukuran font besar 20px (menonjol)
+       Ubah untuk lebih besar/kecil: font-size: 24px; atau 18px; */
+    font-size: 20px;
+}
+
+/* ============================
+   Layout khusus Detail Antrian
+   ============================ */
+.detail-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: #fff;
+}
+
+.detail-modal-header-left,
+.detail-modal-header-right {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.detail-header-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.9;
+}
+
+.detail-header-date {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.detail-header-klaster {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.detail-modal-main {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+    gap: 24px;
+    align-items: stretch;
+}
+
+.detail-number-block {
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: #f5f7ff;
+    padding: 20px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.detail-number-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-bottom: 8px;
+}
+
+.detail-number-value {
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.detail-info-block {
+    display: flex;
+    flex-direction: column;
+}
+
+.detail-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 18px;
+}
+
+/* Hilangkan garis panjang per-item untuk mode grid */
+.detail-info-grid .detail-item {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+.detail-meta {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.detail-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.detail-meta-label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    font-weight: 700;
+}
+
+.detail-meta-value {
+    font-size: 13px;
+    color: var(--text);
+}
+
+@media (max-width: 640px) {
+    .detail-modal-main {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-modal-header {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .detail-info-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================
+   3. RESPONSIVE DESIGN
+   ============================================
+   Media queries untuk tampilan mobile/tablet
+   ============================================ */
+
+/* Tablet & Mobile (lebar layar <= 768px) */
+@media (max-width: 768px) {
+    /* Tabel - Ukuran font lebih kecil di mobile */
+    .data-table {
+        /* FONT SIZE - Ukuran font lebih kecil 12px (dari 14px)
+           Sesuai untuk layar mobile yang lebih kecil
+           Ubah untuk lebih besar/kecil: font-size: 11px; atau 13px; */
+        font-size: 12px;
+    }
+    
+    /* Header Tabel - Pastikan warna sama dengan desktop */
+    .data-table thead {
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+    }
+    
+    /* Header dan Body Cell - Padding lebih kecil di mobile */
+    .data-table th,
+    .data-table td {
+        /* PADDING - Padding lebih kecil (10px atas-bawah, 8px kiri-kanan)
+           Dari 15px 12px menjadi lebih compact untuk layar kecil
+           Ubah untuk lebih besar/kecil: padding: 12px 10px; atau 8px 6px; */
+        padding: 10px 8px;
+    }
+    
+    /* Modal Content - Padding dan margin lebih kecil di mobile */
+    .modal-content {
+        /* PADDING - Padding lebih kecil 25px (dari 40px)
+           Sesuai untuk layar mobile yang lebih kecil
+           Ubah untuk lebih besar/kecil: padding: 30px; atau 20px; */
+        padding: 25px;
+        
+        /* MARGIN - Margin atas lebih kecil 10% (dari 5%)
+           Modal akan lebih tinggi di layar mobile
+           Ubah untuk lebih tinggi/rendah: margin: 5% auto; atau 15% auto; */
+        margin: 10% auto;
+    }
+    
+    /* Modal Header - Ukuran font lebih kecil di mobile */
+    .modal-content h2 {
+        /* FONT SIZE - Ukuran font lebih kecil 20px (dari 24px)
+           Sesuai untuk layar mobile yang lebih kecil
+           Ubah untuk lebih besar/kecil: font-size: 22px; atau 18px; */
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,145 @@
+/* ============================================
+   FOOTER (USER)
+   ============================================
+   Footer dengan informasi, link, dan copyright
+   ============================================ */
+
+.main-footer {
+    background: #1f2933;                   /* warna background gelap */
+    color: rgba(255, 255, 255, 0.8);      /* warna teks putih transparan */
+    margin-top: auto;                      /* push footer ke bawah */
+    padding: 40px 0 20px;                  /* jarak dalam: atas-bawah */
+    flex-shrink: 0;                        /* jangan shrink saat zoom out */
+    width: 100%;                           /* Pastikan full width */
+    box-sizing: border-box;                /* Pastikan padding tidak menambah lebar */
+}
+
+.footer-content {
+    /* Samakan dengan sistem breakpoint container utama (dashboard-container) */
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+/* Breakpoint sama dengan dashboard-container agar footer sejajar dengan header & konten */
+@media (min-width: 768px) {
+    .footer-content {
+        max-width: 720px;
+        padding: 0 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .footer-content {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .footer-content {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .footer-content {
+        max-width: 1320px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .footer-content {
+        max-width: 100%;
+        padding: 0 12px;
+    }
+}
+
+.footer-grid {
+    display: grid;                         /* layout grid */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* kolom otomatis, minimal 250px */
+    gap: 40px;                             /* jarak antar kolom */
+    margin-bottom: 30px;                   /* jarak bawah grid */
+}
+
+@media (max-width: 767.98px) {
+    .footer-grid {
+        grid-template-columns: 1fr;        /* Satu kolom di mobile */
+        gap: 30px;                         /* Kurangi gap di mobile */
+        margin-bottom: 20px;
+    }
+}
+
+.footer-section h3 {
+    color: white;                          /* warna teks putih */
+    font-size: 18px;                       /* ukuran font judul */
+    font-weight: 700;                      /* tebal font */
+    margin: 0 0 20px 0;                    /* margin: atas-kanan-bawah-kiri */
+}
+
+.footer-section p,
+.footer-section a {
+    color: rgba(255, 255, 255, 0.7);      /* warna teks putih transparan */
+    font-size: 14px;                       /* ukuran font */
+    line-height: 1.8;                      /* jarak antar baris */
+    text-decoration: none;                 /* hapus underline */
+    display: block;                        /* tampilkan sebagai block */
+    margin-bottom: 8px;                    /* jarak bawah */
+    transition: color 0.3s ease;          /* animasi warna */
+}
+
+.footer-section a:hover {
+    color: var(--primary);                 /* warna teks mengikuti warna utama (hijau) */
+}
+
+.footer-logo {
+    display: flex;                         /* layout flexbox */
+    align-items: center;                   /* vertikal center */
+    gap: 12px;                             /* jarak antara icon & teks */
+    margin-bottom: 15px;                   /* jarak bawah logo */
+}
+
+.footer-logo-icon {
+    width: 40px;                           /* lebar icon */
+    height: 40px;                          /* tinggi icon */
+    background: white;                     /* background putih */
+    border-radius: 8px;                   /* sudut melengkung */
+    display: flex;                         /* layout flexbox */
+    align-items: center;                   /* vertikal center */
+    justify-content: center;              /* horizontal center */
+    padding: 6px;                         /* jarak dalam icon */
+}
+
+.footer-logo-icon img {
+    width: 100%;                           /* lebar penuh container */
+    height: 100%;                          /* tinggi penuh container */
+    object-fit: contain;                   /* gambar proporsional */
+}
+
+.footer-logo-text h4 {
+    margin: 0;                             /* hapus margin default */
+    color: white;                          /* warna teks putih */
+    font-size: 18px;                       /* ukuran font judul */
+    font-weight: 700;                      /* tebal font */
+}
+
+.footer-logo-text p {
+    margin: 2px 0 0 0;                     /* margin: atas-kanan-bawah-kiri */
+    color: rgba(255, 255, 255, 0.6);     /* warna teks putih lebih transparan */
+    font-size: 12px;                       /* ukuran font deskripsi */
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* garis pemisah atas */
+    padding-top: 20px;                     /* jarak atas */
+    text-align: center;                    /* teks di tengah */
+    color: rgba(255, 255, 255, 0.6);      /* warna teks putih transparan */
+    font-size: 13px;                       /* ukuran font */
+}
+
+.footer-bottom p {
+    margin: 0;                             /* hapus margin default */
+}
+
+/* Responsive footer-grid sudah di-handle di atas bersama dengan footer-content breakpoints */
+

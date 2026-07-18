@@ -1,0 +1,566 @@
+/* ============================================
+   PROFILE USER PAGE — View dulu, lalu Edit
+   ============================================
+   - Halaman profil user: tampilan (view) dulu; Informasi Akun (form edit); Informasi SIPAS.
+   - Foto profil: klik gambar = lightbox; ikon pensil hanya di Informasi Akun.
+   - Warna: var(--primary), var(--primary-dark).
+   ============================================
+   PERUBAHAN / YANG DIBUAT (ringkasan):
+   - Nama di bawah foto: posisi tengah, bold, ukuran diperbesar; garis pemisah tidak dempet.
+   - Tombol Informasi Akun & Informasi SIPAS: vertikal (persegi panjang), full width, sama besar, berikon; selector .profile-view-body agar tidak tertimpa utilities.
+   - Inisial saat tidak ada foto: dari NAMA user, lingkaran gradient hijau (.profile-photo-initials).
+   - Section Informasi SIPAS: card pembungkus (.profile-tentang-card), judul section, divider, list rapi; .profile-card-hide-bg untuk hapus card putih di atas section.
+   ============================================ */
+
+/* Container halaman profil — lebar maksimal 720px, rata tengah */
+.profile-page .dashboard-container {
+    max-width: 720px;
+    padding: 20px 16px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.profile-page-content {
+    min-height: 200px;
+}
+
+/* Card utama — padding dipadatkan agar tidak kebanyakan space kosong */
+.profile-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    padding: 24px 28px 28px;
+    border: 1px solid #e5e7eb;
+}
+
+/* Saat menampilkan Informasi SIPAS: hapus card putih di atas section (class ditambah via JS di profile_user.js) */
+.profile-card.profile-card-hide-bg {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding-top: 0;
+}
+
+.profile-card-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 16px 0;
+    padding: 0;
+}
+
+/* ========== Mode TAMPILAN (View) — data rapi per section ==========
+   - Setiap section punya judul (Identitas, Data Keluarga, Data Pribadi) + garis pembatas.
+   - Data dalam grid 2 kolom (kiri | kanan); item .full memakai lebar penuh.
+   - Ukuran teks diperbesar agar nyaman dibaca; jarak dipadatkan.
+   ========== */
+.profile-view-data {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Wrapper tiap section (Identitas, Data Keluarga, Data Pribadi) */
+.profile-view-section {
+    margin-bottom: 18px;
+}
+
+.profile-view-section:last-of-type {
+    margin-bottom: 0;
+}
+
+/* Judul section — uppercase, teks 1rem agar jelas */
+.profile-view-section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0;
+    padding: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+/* Garis pembatas di bawah judul section — memisahkan judul dengan isi data */
+.profile-view-divider {
+    height: 1px;
+    background: #e5e7eb;
+    margin: 8px 0 12px 0;
+}
+
+/* Grid 2 kolom — tiap baris maksimal 2 item (kiri | kanan), gap 24px horizontal, 10px vertikal */
+.profile-view-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+    row-gap: 10px;
+    width: 100%;
+}
+
+/* Item full lebar — memakai 2 kolom (misal: Nama, Alamat, Email) */
+.profile-view-item.full {
+    grid-column: 1 / -1;
+}
+
+/* Satu item = label di atas + value di bawah, padding minimal */
+.profile-view-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+    padding: 4px 0;
+}
+
+/* Label — ukuran teks lebih besar, jelas */
+.profile-view-item .label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    line-height: 1.3;
+}
+
+/* Value — ukuran teks nyaman dibaca */
+.profile-view-item .value {
+    font-size: 1.02rem;
+    font-weight: 500;
+    color: #111827;
+    line-height: 1.4;
+}
+
+/* ========== Tampilan profil: nama tengah + bold + besar, garis pemisah, tombol persegi panjang vertikal ==========
+   Pakai .profile-view-body agar spesifisitas tinggi dan tidak tertimpa utilities.css */
+
+/* Nama di bawah foto: posisi tepat di tengah, bold, ukuran diperbesar biar jelas */
+.profile-view-body .profile-view-name {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #1f2937;
+    margin: 0;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+}
+
+/* Garis pemisah di bawah nama — jarak dari nama, tampil jelas (bukan dempet) */
+.profile-view-body .profile-view-divider-line {
+    width: 100%;
+    max-width: 220px;
+    height: 3px;
+    margin: 26px auto 30px auto;
+    background: linear-gradient(90deg, transparent, var(--primary) 15%, var(--primary) 85%, transparent);
+    border-radius: 2px;
+    opacity: 0.85;
+}
+
+/* Container tombol: wajib tumpuk vertikal — Informasi Akun di atas, Informasi SIPAS di bawah */
+.profile-view-body .profile-view-actions.profile-view-actions-buttons {
+    display: flex !important;
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 14px;
+    width: 100%;
+    border-top: none;
+    padding-top: 0;
+    margin-top: 0;
+}
+
+/* Tombol bentuk persegi panjang: full lebar card, tinggi sama, ikon + teks */
+.profile-view-body .profile-view-btn-block {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    min-height: 52px !important;
+    padding: 14px 20px !important;
+    font-size: 1.05rem !important;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: transform 0.15s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+}
+
+.profile-view-body .profile-view-btn-block:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.profile-view-body .profile-view-btn-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    opacity: 0.95;
+}
+
+.profile-view-body .profile-view-actions-buttons .btn-primary.profile-view-btn-block,
+.profile-view-body .profile-view-actions-buttons .btn-secondary.profile-view-btn-block {
+    min-width: 0 !important;
+}
+
+/* ========== Section Informasi SIPAS (deskripsi + jam operasional + tutorial) ==========
+   Card pembungkus keseluruhan, judul section, garis pemisah, list rapi, tombol Tutup.
+   - .profile-tentang-card: background abu-abu muda, border, radius, shadow.
+   - Judul (.profile-tentang-section-title), divider (.profile-tentang-divider), list, .profile-tentang-actions (Informasi SIPAS). */
+
+.profile-tentang-body {
+    width: 100%;
+}
+
+/* Card pembungkus isi Tentang — background, border, radius, shadow agar tampil rapi dan elegan */
+.profile-tentang-card {
+    width: 100%;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+    overflow: hidden;
+}
+
+.profile-tentang-card-inner {
+    padding: 24px 28px 28px;
+}
+
+/* Judul tiap section (Jam Operasional, Tutorial Pendaftaran Antrian) */
+.profile-tentang-section-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 0 0;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* Garis pemisah di bawah judul section */
+.profile-tentang-divider {
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary) 0%, transparent 100%);
+    opacity: 0.4;
+    margin: 10px 0 16px 0;
+    border-radius: 1px;
+}
+
+/* Label kecil di atas list (Jam Pelayanan, Pendaftaran Antrian) */
+.profile-tentang-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #475569;
+    margin: 0 0 6px 0;
+}
+
+.profile-tentang-section {
+    margin-bottom: 28px;
+}
+
+.profile-tentang-section:last-of-type {
+    margin-bottom: 24px;
+}
+
+/* List bullet dan list nomor — jarak dan warna teks nyaman dibaca */
+.profile-tentang-list {
+    line-height: 1.85;
+    color: #475569;
+    margin: 0 0 18px 0;
+    padding-left: 22px;
+}
+
+.profile-tentang-list-ol {
+    list-style: decimal;
+    padding-left: 24px;
+}
+
+.profile-tentang-list-ol li {
+    margin-bottom: 12px;
+}
+
+/* Area tombol Tutup — rata tengah, jarak atas cukup */
+.profile-tentang-actions {
+    padding-top: 20px;
+    margin-top: 8px;
+    border-top: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .profile-view-grid {
+        grid-template-columns: 1fr;
+        row-gap: 8px;
+    }
+    .profile-view-item {
+        padding: 6px 0;
+    }
+}
+
+/* ========== Foto profil ==========
+   - Klik area foto (bukan ikon pensil) → lightbox tampil gambar besar.
+   - Klik ikon pensil → buka pilih file, upload otomatis setelah pilih.
+   - Lingkaran 120px, border abu-abu, hover pakai warna primary.
+   ========== */
+.profile-photo-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-photo-section-edit {
+    margin-bottom: 18px;
+}
+
+/* Wrapper foto lingkaran — cursor pointer agar terasa bisa diklik */
+.profile-photo-wrap {
+    display: inline-flex;
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: visible;
+    cursor: pointer;
+    border: 3px solid #e5e7eb;
+    background: #f5f5f5;
+}
+
+.profile-photo-wrap:hover {
+    border-color: var(--primary);
+    background: #f0fdf4;
+}
+
+.profile-photo-wrap .profile-photo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Inisial saat tidak ada foto profil — dari NAMA user (bukan username), lingkaran gradient hijau */
+.profile-photo-wrap .profile-photo-initials {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Tombol ikon pensil — posisi kanan bawah foto, warna primary (hijau), border putih agar kontras. Hanya dipakai di Informasi Akun. */
+.profile-photo-edit-btn {
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: #fff;
+    border: 2px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 2;
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.2s;
+}
+
+.profile-photo-edit-btn:hover {
+    background: var(--primary-dark);
+}
+
+.profile-photo-edit-btn .icon-pencil {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+}
+
+.profile-photo-edit-btn .icon-pencil path {
+    stroke: #fff;
+}
+
+/* ========== Lightbox foto profil ==========
+   - Overlay fullscreen, backdrop gelap; gambar di tengah.
+   - Tutup: klik backdrop, tombol tutup (×), atau tombol Escape.
+   ========== */
+.profile-photo-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+}
+
+.profile-photo-lightbox.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.profile-photo-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    cursor: pointer;
+}
+
+.profile-photo-lightbox-content {
+    position: relative;
+    max-width: 90vw;
+    max-height: 90vh;
+    z-index: 1;
+}
+
+.profile-photo-lightbox-img {
+    max-width: 100%;
+    max-height: 85vh;
+    width: auto;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+.profile-photo-lightbox-close {
+    position: absolute;
+    top: -40px;
+    right: 0;
+    width: 36px;
+    height: 36px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #1f2937;
+    font-size: 1.5rem;
+    line-height: 1;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    transition: background 0.2s;
+}
+
+.profile-photo-lightbox-close:hover {
+    background: #fff;
+}
+
+/* ========== Form Edit (mode edit profil) ==========
+   Form update profil: field sama seperti pendaftaran awal.
+   - Baris 2 kolom: profile-form-row (No.KK|NIK, Tempat|Tanggal Lahir, dll).
+   - No.KK dan NIK readonly. Focus pakai warna primary.
+   - Tombol Batal + Simpan di bawah (profile-form-actions).
+   ========== */
+.profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.profile-form .form-group label {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #444;
+    margin: 0;
+}
+
+.profile-form .form-input,
+.profile-form textarea.form-input {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+}
+
+.profile-form .form-input:focus,
+.profile-form textarea.form-input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.15);
+}
+
+.profile-form .form-input[readonly] {
+    background: #f8f9fa;
+    color: #6c757d;
+}
+
+.profile-form textarea.form-input {
+    resize: vertical;
+    min-height: 72px;
+}
+
+.profile-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+@media (max-width: 560px) {
+    .profile-form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+.checkbox-group-inline {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px 24px;
+    align-items: center;
+}
+
+.checkbox-group-inline .checkbox-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 400;
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+.checkbox-group-inline .checkbox-label input {
+    margin: 0;
+}
+
+.profile-form-actions {
+    margin-top: 12px;
+    padding-top: 24px;
+    border-top: 1px solid #eee;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.profile-form-actions .btn-save {
+    min-width: 120px;
+    padding: 10px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.profile-form-actions .btn-secondary {
+    padding: 10px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+}

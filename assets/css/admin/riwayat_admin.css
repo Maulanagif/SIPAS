@@ -1,0 +1,231 @@
+/* ============================================
+   RIWAYAT ADMIN PAGE STYLES
+   ============================================
+   File: riwayat_admin.css
+   Deskripsi: Styles khusus untuk halaman riwayat kunjungan admin
+   ============================================ */
+
+/* ============================================
+   1. STATUS BADGE STYLES
+   ============================================
+   Styles untuk badge status antrian
+   ============================================ */
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.status-menunggu {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.status-dipanggil {
+    background-color: #cfe2ff;
+    color: #084298;
+}
+
+.status-selesai {
+    background-color: #d1e7dd;
+    color: #0f5132;
+}
+
+.status-batal {
+    background-color: #f8d7da;
+    color: #842029;
+}
+
+/* ============================================
+   2. FILTER FORM STYLES
+   ============================================
+   Styles untuk form pencarian
+   ============================================ */
+
+/* Filter form menggunakan styling dari dashboard_admin.css */
+/* Tidak perlu override karena sudah menggunakan struktur yang sama dengan laporan */
+
+/* ============================================
+   3. BADGE SUMBER STYLES
+   ============================================
+   Styles untuk badge sumber (Online/Offline)
+   ============================================ */
+
+.badge-sumber {
+    display: inline-block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ============================================
+   4. RESPONSIVE DESIGN
+   ============================================
+   Media queries untuk tampilan mobile/tablet
+   ============================================ */
+
+/* Mobile dan Tablet: Tabel dengan horizontal scroll seperti desktop */
+@media (max-width: 768px) {
+    /* Card padding lebih baik di mobile */
+    .card {
+        padding: 18px 16px;
+        margin-bottom: 16px;
+    }
+    
+    .card h2 {
+        font-size: 18px;
+        margin-bottom: 16px;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -16px;
+        padding: 0 16px;
+    }
+    
+    .data-table {
+        display: table;
+        width: 100%;
+        min-width: 1000px;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        background: white;
+    }
+    
+    .data-table thead {
+        display: table-header-group;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+    }
+    
+    .data-table tbody {
+        display: table-row-group;
+    }
+    
+    .data-table th,
+    .data-table td {
+        display: table-cell;
+        white-space: nowrap;
+    }
+    
+    .data-table th {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    
+    .data-table tbody td:before {
+        display: none;
+    }
+    
+    /* Ukuran kolom untuk mobile */
+    .data-table th:nth-child(1),
+    .data-table td:nth-child(1) {
+        width: 40px;
+        min-width: 40px;
+    }
+    
+    .data-table th:nth-child(2),
+    .data-table td:nth-child(2) {
+        width: 100px;
+        min-width: 100px;
+    }
+    
+    .data-table th:nth-child(3),
+    .data-table td:nth-child(3) {
+        width: 150px;
+        min-width: 150px;
+    }
+    
+    .data-table th:nth-child(4),
+    .data-table td:nth-child(4) {
+        width: 60px;
+        min-width: 60px;
+    }
+    
+    .data-table th:nth-child(5),
+    .data-table td:nth-child(5) {
+        width: 100px;
+        min-width: 100px;
+    }
+    
+    .data-table th:nth-child(6),
+    .data-table td:nth-child(6) {
+        width: 120px;
+        min-width: 120px;
+    }
+    
+    .data-table th:nth-child(7),
+    .data-table td:nth-child(7) {
+        width: 150px;
+        min-width: 150px;
+    }
+    
+    .data-table th:nth-child(8),
+    .data-table td:nth-child(8) {
+        width: 80px;
+        min-width: 80px;
+        text-align: center;
+    }
+    
+    .data-table th:nth-child(9),
+    .data-table td:nth-child(9) {
+        width: 100px;
+        min-width: 100px;
+    }
+    
+    /* Filter form di mobile - sama dengan laporan */
+    .filter-form-inline {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 16px;
+    }
+    
+    .filter-group-inline {
+        max-width: 100% !important;
+        width: 100%;
+    }
+    
+    .filter-group-inline input,
+    .filter-group-inline select,
+    .filter-group-inline .filter-search-input {
+        width: 100%;
+        box-sizing: border-box;
+        min-width: auto;
+    }
+    
+    /* Tombol filter di mobile - wrapper div dan tombol */
+    .filter-form-inline > div:last-child {
+        width: 100% !important;
+        margin-left: 0 !important;
+        flex: 1 1 100% !important;
+        display: flex !important;
+        align-items: stretch !important;
+    }
+    
+    .filter-form-inline .btn-filter {
+        width: 100% !important;
+        justify-content: center;
+        min-width: auto !important;
+    }
+}
+
+/* Tablet: Horizontal scroll dengan ukuran lebih besar */
+@media (min-width: 481px) and (max-width: 768px) {
+    .table-container {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .data-table {
+        min-width: 1100px;
+    }
+}
+

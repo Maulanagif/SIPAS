@@ -1,0 +1,544 @@
+/* ============================================
+   HEADER & SIDEBAR (USER)
+   ============================================ */
+/* Note: jika ingin memindahkan logo ke kanan, tambahkan:
+   flex-direction: row-reverse; pada .header-content */
+
+/* ============================================
+   1. MAIN HEADER
+   ============================================
+   Header utama dengan logo, navigasi, dan tombol logout
+   ============================================ */
+
+.main-header {
+    background: #fff;                      /* warna background putih */
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08); /* bayangan header */
+    position: sticky;                      /* header tetap di atas saat scroll */
+    top: 0;                                /* posisi di paling atas */
+    z-index: 1000;                         /* layer di atas konten lain */
+    width: 100%;                           /* Pastikan full width */
+    box-sizing: border-box;                /* Pastikan padding tidak menambah lebar */
+}
+
+.header-content {
+    /* Samakan dengan sistem breakpoint container utama */
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    box-sizing: border-box;
+}
+
+/* Breakpoint sama dengan dashboard-container agar header sejajar dengan konten & footer */
+@media (min-width: 768px) {
+    .header-content {
+        max-width: 720px;
+        padding: 0 20px;
+    }
+}
+
+@media (min-width: 992px) {
+    .header-content {
+        max-width: 960px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .header-content {
+        max-width: 1140px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .header-content {
+        max-width: 1320px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .header-content {
+        max-width: 100%;
+        padding: 0 12px;
+        gap: 12px;
+    }
+    
+    /* Sembunyikan tombol logout di header saat mobile (hanya muncul di sidebar) */
+    .header-right {
+        display: none !important;
+    }
+}
+
+/* ============================================
+   2. LOGO SECTION
+   ============================================
+   Bagian logo di kiri header
+   ============================================ */
+
+.header-left {
+    display: flex;                         /* layout flexbox */
+    align-items: center;                   /* vertikal center */
+    gap: 12px;                             /* jarak antara hamburger & logo */
+    flex-shrink: 0;                        /* logo tidak menyusut */
+}
+
+.logo-section {
+    display: flex;                         /* layout flexbox */
+    align-items: center;                   /* vertikal center */
+    gap: 12px;                             /* jarak antara icon & teks */
+}
+
+/* Logo sebagai link (Pendaftaran Awal → landing) */
+a.logo-section.logo-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.logo-icon {
+    width: 48px;                           /* lebar icon logo */
+    height: 48px;                          /* tinggi icon logo */
+    border-radius: 10px;                   /* sudut melengkung */
+    overflow: hidden;                      /* potong gambar yang keluar */
+    background: white;                      /* background putih */
+    padding: 6px;                          /* jarak dalam icon */
+}
+
+.logo-image {
+    width: 100%;                           /* lebar penuh container */
+    height: 100%;                          /* tinggi penuh container */
+    object-fit: contain;                   /* gambar proporsional */
+}
+
+.logo-text {
+    display: flex;                         /* layout flexbox */
+    flex-direction: column;                /* susun vertikal */
+    gap: 2px;                              /* jarak antara h1 & p */
+}
+
+.logo-text h1 {
+    margin: 0;                             /* hapus margin default */
+    font-size: 20px;                       /* ukuran font judul */
+    font-weight: 700;                      /* tebal font */
+    color: #1f2937;                        /* warna teks hitam */
+}
+
+.logo-text p {
+    margin: 0;                             /* hapus margin default */
+    font-size: 13px;                       /* ukuran font deskripsi */
+    font-weight: 500;                      /* tebal font sedang */
+    color: var(--primary);                 /* warna teks mengikuti warna utama (hijau) */
+}
+
+/* ============================================
+   3. HAMBURGER BUTTON (MOBILE)
+   ============================================
+   Tombol menu hamburger untuk mobile/tablet
+   ============================================ */
+
+.hamburger-btn {
+    display: none;                         /* sembunyikan di desktop */
+    border: 1px solid #d1d5db;           /* border abu-abu */
+    background: white;                     /* background putih */
+    border-radius: 8px;                   /* sudut melengkung */
+    padding: 8px;                         /* jarak dalam tombol */
+    cursor: pointer;                      /* cursor pointer */
+}
+
+.hamburger-btn:hover {
+    background: #f3f4f6;                  /* background abu-abu saat hover */
+}
+
+.hamburger-btn svg {
+    width: 22px;                          /* lebar icon */
+    height: 22px;                         /* tinggi icon */
+}
+
+/* ============================================
+   4. NAVIGASI MENU
+   ============================================
+   Menu navigasi di tengah header (Beranda, Daftar, dll)
+   ============================================ */
+
+.header-nav {
+    display: flex;                         /* layout flexbox */
+    align-items: center;                   /* vertikal center */
+    
+    /* GAP - Jarak antar menu item
+       Ubah 8px untuk mengatur jarak antara "Beranda", "Daftar Antrian", dll:
+       - Lebih jauh: gap: 12px; atau gap: 16px;
+       - Lebih dekat: gap: 4px; atau gap: 2px; */
+    gap: 8px;
+    
+    flex: 1;                               /* ambil sisa ruang (push menu ke tengah) */
+    
+    /* JUSTIFY-CONTENT - Posisi menu
+       - center: menu di tengah (default)
+       - flex-start: menu ke kiri
+       - flex-end: menu ke kanan
+       - space-between: menu menyebar */
+    justify-content: center;
+}
+
+.header-nav-menu {
+    display: flex;                         /* layout flexbox */
+    align-items: center;                   /* vertikal center */
+    
+    /* GAP - Jarak antar item menu (Beranda, Daftar, dll)
+       Ubah 4px untuk mengatur jarak yang lebih detail:
+       - Lebih jauh: gap: 8px; atau gap: 10px;
+       - Lebih dekat: gap: 2px; */
+    gap: 4px;
+    
+    overflow-x: auto;                      /* scroll horizontal jika menu tidak muat */
+    scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+    -ms-overflow-style: none; /* Sembunyikan scrollbar di IE/Edge */
+}
+
+/* Sembunyikan scrollbar di Chrome/Safari */
+.header-nav-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.header-nav-item {
+    /* PADDING - Jarak dalam menu item (teks dengan tepi)
+       Format: padding: atas-bawah kiri-kanan;
+       Ubah 12px 14px untuk mengatur ukuran tombol menu:
+       - Lebih besar: padding: 14px 18px; (tombol lebih besar)
+       - Lebih kecil: padding: 10px 12px; (tombol lebih kecil) */
+    padding: 12px 14px;
+    
+    text-decoration: none;                 /* hapus underline */
+    color: #1f2937;                        /* warna teks hitam */
+    font-weight: 500;                      /* tebal font sedang - ubah 500 menjadi 600 untuk lebih tebal */
+    border-radius: 8px;                    /* sudut melengkung - ubah untuk lebih bulat/tajam */
+    white-space: nowrap;                   /* teks tidak wrap (tidak pindah baris) */
+    transition: background 0.2s ease, color 0.2s ease; /* animasi smooth saat hover */
+}
+
+.header-nav-item:hover {
+    background: #f3f4f6;                    /* background abu-abu saat hover */
+    color: var(--primary);                 /* warna teks hijau saat hover */
+}
+
+.header-nav-item.active {
+    background: #dcfce7;                    /* background hijau muda untuk halaman aktif */
+    color: var(--primary);                 /* warna teks hijau gelap */
+}
+
+/* ============================================
+   5. TOMBOL KELUAR
+   ============================================
+   Tombol logout di header (tombol merah)
+   ============================================ */
+
+.header-nav-item-logout {
+    background: #ef4444;                   /* background merah */
+    color: #fff;                           /* warna teks putih */
+    padding: 8px 18px;                     /* jarak dalam tombol */
+    border-radius: 999px;                  /* bentuk bulat penuh */
+    border: 1px solid #ef4444;            /* border merah */
+    font-weight: 600;                      /* tebal font */
+    text-decoration: none;                 /* hapus underline */
+    display: inline-block;                 /* bisa diatur lebar/tinggi */
+}
+
+.header-nav-item-logout:hover {
+    background: #dc2626;                   /* background merah lebih gelap saat hover */
+    border-color: #dc2626;                 /* border merah lebih gelap */
+    color: #fff;                           /* warna teks tetap putih */
+}
+
+/* User info */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+    margin-left: auto; /* Push ke kanan */
+}
+
+.header-user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: #f3f4f6;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+}
+
+.header-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.header-user-name {
+    color: #1f2937;
+    font-weight: 600;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* ============================================
+   6. SIDEBAR MOBILE/TABLET
+   ============================================
+   Sidebar yang muncul dari kiri saat layar kecil
+   ============================================ */
+
+.sidebar-overlay {
+    display: none;                         /* sembunyikan overlay di desktop */
+    position: fixed;                       /* posisi fixed full screen */
+    top: 0;                                /* mulai dari atas */
+    left: 0;                               /* mulai dari kiri */
+    right: 0;                              /* sampai kanan */
+    bottom: 0;                             /* sampai bawah */
+    background: rgba(0, 0, 0, 0.5);       /* background hitam transparan */
+    z-index: 999;                          /* layer di bawah sidebar */
+    opacity: 0;                            /* transparan (untuk animasi) */
+    transition: opacity 0.3s ease;        /* animasi fade */
+}
+
+.sidebar-overlay.active {
+    display: block;                        /* tampilkan overlay */
+    opacity: 1;                            /* tidak transparan */
+}
+
+.sidebar {
+    position: fixed;                       /* posisi fixed */
+    top: 0;                                /* mulai dari atas */
+    left: -300px;                          /* sembunyikan di luar layar kiri */
+    width: 300px;                          /* lebar sidebar */
+    height: 100vh;                         /* tinggi full screen */
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.2); /* bayangan di kanan */
+    z-index: 1001;                         /* layer di atas overlay */
+    transition: left 0.3s ease;           /* animasi slide */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.sidebar.active {
+    left: 0;                               /* geser ke dalam layar */
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar-logo-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    padding: 6px;
+}
+
+.sidebar-logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.sidebar-logo-text h2 {
+    margin: 0;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.sidebar-logo-text p {
+    margin: 2px 0 0 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 11px;
+}
+
+.sidebar-close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    color: white;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.sidebar-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.sidebar-close-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.sidebar-user-info {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.sidebar-user-avatar {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--primary);
+    font-size: 20px;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+
+.sidebar-user-avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.sidebar-user-name {
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.sidebar-menu {
+    padding: 10px 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.sidebar-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.sidebar-menu-item:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: white;
+}
+
+.sidebar-menu-item.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    border-left-color: white;
+    font-weight: 600;
+}
+
+.sidebar-menu-item svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: inherit;
+}
+
+.sidebar-menu-item-logout {
+    color: #ffebee;
+    border-left-color: transparent;
+}
+
+.sidebar-menu-item-logout:hover {
+    background: rgba(255, 82, 82, 0.2);
+    color: #ffcdd2;
+    border-left-color: #ffcdd2;
+}
+
+.sidebar-menu-item-logout.active {
+    border-left-color: #ffcdd2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hamburger-btn { 
+        display: block; 
+        flex-shrink: 0; /* Jangan shrink hamburger button */
+    }
+    .header-nav { 
+        display: none !important; 
+    }
+    .header-content { 
+        padding: 12px 12px; /* Konsisten dengan admin */
+        gap: 12px; /* Kurangi gap di mobile */
+        height: auto; /* Auto height di mobile */
+        min-height: 60px; /* Minimal tinggi */
+    }
+    .logo-text h1 { 
+        font-size: 18px; 
+    }
+    .logo-text p { 
+        font-size: 11px; 
+    }
+    .logo-icon { 
+        width: 45px; 
+        height: 45px; 
+    }
+    .header-user-name { 
+        display: none; 
+    }
+    .header-user-info { 
+        padding: 6px 12px; 
+    }
+    .header-left { 
+        margin-left: 0; 
+        flex-shrink: 0; /* Jangan shrink logo section */
+        min-width: 0; /* Boleh shrink jika perlu */
+    }
+    .logo-section {
+        flex-shrink: 0; /* Jangan shrink logo */
+    }
+    .header-content { 
+        justify-content: space-between;
+    }
+    body.sidebar-open { 
+        overflow: hidden; 
+    }
+}
+
+@media (min-width: 769px) {
+    .sidebar-overlay,
+    .sidebar { display: none !important; }
+    .header-nav { display: flex !important; }
+}
+

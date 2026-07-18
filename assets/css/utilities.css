@@ -1,0 +1,593 @@
+
+/* ============================================
+   UTILITIES (font, variables, layout dasar)
+   ============================================
+   File ini berisi: font import, CSS variables, 
+   dan komponen dasar yang digunakan di semua halaman
+   ============================================ */
+
+/* Import font Inter dari Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+/* ============================================
+   1. CSS VARIABLES
+   ============================================
+   Variabel warna dan spacing yang digunakan di seluruh aplikasi
+   ============================================ */
+
+:root {
+    --bg: #f3fbf5;                        /* warna background utama */
+    --card: #ffffff;                       /* warna background card */
+    --border: #e5e9f2;                    /* warna border */
+    --text: #1f2933;                      /* warna teks utama */
+    --muted: #6b7280;                     /* warna teks sekunder */
+    --primary: #15803d; /* hijau utama sesuai logo */                   /* warna primary (biru) */
+    --primary-dark: #166534; /* hijau lebih gelap untuk hover */             /* warna primary lebih gelap */
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* bayangan card */
+    --radius: 14px;                       /* sudut melengkung default */
+}
+
+/* ============================================
+   2. BODY STYLES
+   ============================================
+   Style dasar untuk body
+   ============================================ */
+
+body {
+    margin: 0;                             /* hapus margin default */
+    font-family: 'Inter', system-ui, -apple-system, sans-serif; /* font Inter */
+    background: #f5f7fb;                   /* warna solid (tanpa gradien) agar terasa seperti website biasa */
+    color: #1f2933;                        /* warna teks */
+    min-height: 100vh;                     /* tinggi minimal full screen */
+}
+
+/* ============================================
+   3. DASHBOARD LAYOUT
+   ============================================
+   Container untuk halaman dashboard
+   ============================================ */
+
+.dashboard-wrapper {
+    min-height: 100vh;                     /* tinggi minimal full screen */
+    display: flex;                         /* flexbox layout */
+    flex-direction: column;                /* arah kolom (vertical) */
+}
+
+.dashboard-container {
+    /* Dasar: full width, selalu di tengah */
+    width: 100%;
+    margin: 0 auto;
+    padding: 16px 16px 40px;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+/* Breakpoint ala container Bootstrap → tampilan stabil & benar‑benar center */
+/* SAMAKAN PADDING KIRI-KANAN DENGAN HEADER & FOOTER AGAR SEJAJAR */
+@media (min-width: 768px) {
+    .dashboard-container {
+        max-width: 720px;
+        padding: 20px 20px 40px; /* SAMAKAN dengan header & footer (20px) */
+    }
+}
+
+@media (min-width: 992px) {
+    .dashboard-container {
+        max-width: 960px;
+        padding: 20px 20px 40px; /* Tetap 20px */
+    }
+}
+
+@media (min-width: 1200px) {
+    .dashboard-container {
+        max-width: 1140px;
+        padding: 20px 20px 40px; /* Tetap 20px */
+    }
+}
+
+@media (min-width: 1400px) {
+    .dashboard-container {
+        max-width: 1320px;
+        padding: 20px 20px 40px; /* Tetap 20px */
+    }
+}
+
+/* Responsive: pada layar kecil, biarkan konten benar-benar full width
+   dan kurangi padding supaya tidak terasa sempit */
+@media (max-width: 767.98px) {
+    .dashboard-container {
+        max-width: 100%;
+        padding: 12px 12px 24px; /* SAMAKAN dengan header & footer (12px) */
+    }
+    
+    /* Page Header - Center di mobile */
+    .page-header {
+        padding: 16px;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    .page-header h1 {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    .page-header p {
+        font-size: 13px;
+    }
+
+    /* Card - Padding lebih kecil di mobile */
+    .card {
+        padding: 16px;
+        margin-bottom: 16px;
+    }
+    
+    /* Card Header - Layout vertikal di mobile, judul center */
+    .card-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 18px;
+        padding-bottom: 14px;
+        text-align: center;
+    }
+
+    .card-header h2 {
+        font-size: 18px;
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* Tombol di Card Header - Full width di mobile */
+    .card-header .btn,
+    .card-header .btn-primary {
+        width: 100%;
+        text-align: center;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    /* Info list di dalam card - mobile friendly */
+    .card ul {
+        padding-left: 20px;
+        margin: 0;
+    }
+
+    .card ul li {
+        font-size: 13px;
+        line-height: 1.7;
+        margin-bottom: 6px;
+    }
+
+    .card p strong {
+        font-size: 14px;
+    }
+}
+
+/* Mobile kecil */
+@media (max-width: 480px) {
+    .page-header {
+        padding: 14px 12px;
+    }
+
+    .page-header h1 {
+        font-size: 18px;
+    }
+
+    .card {
+        padding: 14px 12px;
+    }
+
+    .card-header {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+    }
+    
+    .card-header h2 {
+        font-size: 16px;
+        text-align: center;
+    }
+}
+
+/* ============================================
+   4. PAGE HEADER
+   ============================================
+   Header halaman (judul dan deskripsi)
+   ============================================ */
+
+.page-header {
+    background: white;                     /* warna background putih */
+    padding: 20px 24px;                    /* jarak dalam sedikit lebih ramping */
+    border-radius: 10px;                   /* sudut melengkung lebih kecil */
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06); /* bayangan lebih halus */
+    margin-bottom: 24px;                   /* jarak bawah */
+}
+
+.page-header h1 {
+    margin: 0 0 10px 0;                    /* margin: atas-kanan-bawah-kiri */
+    color: var(--text);                    /* warna teks hitam */
+    font-size: 28px;                       /* ukuran font judul */
+    font-weight: 700;                      /* tebal font */
+}
+
+.page-header p {
+    margin: 0;                             /* hapus margin default */
+    color: var(--muted);                   /* warna teks abu-abu */
+    font-size: 14px;                       /* ukuran font deskripsi */
+}
+
+/* ============================================
+   5. CARD COMPONENT
+   ============================================
+   Komponen card untuk menampilkan konten
+   ============================================ */
+
+.card {
+    background: white;                     /* warna background putih */
+    padding: 22px;                         /* jarak dalam card sedikit lebih kecil */
+    border-radius: 10px;                   /* sudut melengkung lebih kecil */
+    box-shadow: 0 1px 6px rgba(0,0,0,0.08); /* bayangan card lebih tipis */
+    margin-bottom: 20px;                   /* jarak bawah card */
+}
+
+.card-header {
+    display: flex;                         /* layout flexbox */
+    justify-content: space-between;        /* judul kiri, tombol kanan */
+    align-items: center;                   /* vertikal center */
+    margin-bottom: 20px;                   /* jarak bawah header */
+    padding-bottom: 15px;                 /* jarak bawah dalam header */
+    border-bottom: 2px solid var(--border); /* garis pemisah bawah */
+}
+
+.card-header h2 {
+    margin: 0;                             /* hapus margin default */
+    color: var(--text);                    /* warna teks hitam */
+    font-size: 22px;                       /* ukuran font judul */
+}
+
+/* ============================================
+   6. BADGE COMPONENT
+   ============================================
+   Badge untuk status (pending, proses, selesai, dll)
+   ============================================ */
+
+.badge {
+    display: inline-block;                 /* tampilkan inline tapi bisa diatur lebar/tinggi */
+    padding: 5px 12px;                     /* jarak dalam badge */
+    border-radius: 20px;                   /* bentuk bulat penuh */
+    font-size: 12px;                       /* ukuran font */
+    font-weight: 600;                      /* tebal font */
+}
+
+.badge-pending { background: #fef3c7; color: #92400e; } /* badge kuning untuk pending */
+.badge-proses  { background: #dbeafe; color: #1e40af; }  /* badge biru untuk proses */
+.badge-selesai { background: #d1fae5; color: #065f46; } /* badge hijau untuk selesai */
+.badge-ditolak { background: #fee2e2; color: #991b1b; } /* badge merah untuk ditolak */
+
+/* ============================================
+   7. BUTTON COMPONENT
+   ============================================
+   Komponen tombol (primary, detail, dll)
+   ============================================ */
+
+.btn {
+    padding: 10px 20px;                    /* jarak dalam tombol */
+    border-radius: 8px;                   /* sudut melengkung */
+    border: none;                          /* hapus border default */
+    font-weight: 600;                      /* tebal font */
+    font-size: 14px;                       /* ukuran font */
+    cursor: pointer;                      /* cursor pointer */
+    text-decoration: none;                 /* hapus underline jika link */
+    display: inline-block;                 /* bisa diatur lebar/tinggi */
+    transition: all 0.2s;                 /* animasi semua property */
+}
+
+.btn-primary {
+    background: var(--primary);           /* background biru */
+    color: white;                          /* warna teks putih */
+    box-shadow: 0 4px 12px rgba(21, 128, 61, 0.25); /* bayangan hijau */
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);      /* background biru lebih gelap */
+    transform: translateY(-2px);         /* naik sedikit saat hover */
+    box-shadow: 0 6px 16px rgba(21, 128, 61, 0.3); /* bayangan lebih besar */
+}
+
+.btn-detail {
+    background: var(--bg);                /* background abu-abu muda */
+    color: var(--text);                    /* warna teks hitam */
+    border: 1px solid var(--border);     /* border abu-abu */
+    padding: 6px 12px;                     /* jarak dalam lebih kecil */
+    font-size: 12px;                       /* ukuran font lebih kecil */
+}
+
+.btn-detail:hover {
+    background: var(--border);            /* background lebih gelap saat hover */
+}
+
+.btn-secondary {
+    background: #6b7280;                 /* background abu-abu */
+    color: white;                          /* warna teks putih */
+}
+
+.btn-secondary:hover {
+    background: #4b5563;                 /* background abu-abu lebih gelap */
+    transform: translateY(-2px);         /* naik sedikit saat hover */
+}
+
+.btn-danger {
+    background: #ef4444;                 /* merah */
+    color: white;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.25);
+}
+
+.btn-danger:hover {
+    background: #dc2626;                 /* merah lebih gelap */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(239, 68, 68, 0.35);
+}
+
+.btn-sm {
+    padding: 6px 14px;                     /* jarak dalam lebih kecil */
+    font-size: 12px;                       /* ukuran font lebih kecil */
+}
+
+/* ============================================
+   8. ALERT COMPONENT
+   ============================================
+   Komponen alert untuk pesan sukses/error
+   ============================================ */
+
+.alert {
+    padding: 15px 20px;                    /* jarak dalam alert */
+    border-radius: 10px;                  /* sudut melengkung */
+    margin-bottom: 20px;                   /* jarak bawah */
+    font-size: 14px;                       /* ukuran font */
+}
+
+.alert-error {
+    background: #fee2e2;                   /* background merah muda */
+    color: #991b1b;                        /* warna teks merah gelap */
+    border-left: 4px solid #ef4444;      /* border kiri merah */
+}
+
+.alert-success {
+    background: #d1fae5;                  /* background hijau muda */
+    color: #065f46;                        /* warna teks hijau gelap */
+    border-left: 4px solid #10b981;      /* border kiri hijau */
+}
+
+/* ============================================
+   9. EMPTY STATE COMPONENT
+   ============================================
+   Komponen untuk menampilkan pesan kosong
+   ============================================ */
+
+.empty-state {
+    text-align: center;                    /* teks di tengah */
+    padding: 40px 20px;                    /* jarak dalam */
+    color: var(--muted);                   /* warna teks abu-abu */
+}
+
+.empty-state p { margin-bottom: 20px; }   /* jarak bawah paragraf */
+.empty-state a {
+    color: var(--primary);                 /* warna link biru */
+    text-decoration: none;                /* hapus underline */
+    font-weight: 600;                      /* tebal font */
+}
+
+.empty-state a:hover { text-decoration: underline; } /* underline saat hover */
+
+/* ============================================
+   10. TEXT UTILITIES
+   ============================================
+   Utility class untuk styling teks
+   ============================================ */
+
+.text-muted {
+    color: var(--muted);                   /* warna teks abu-abu */
+    font-size: 12px;                       /* ukuran font kecil */
+    margin-top: 5px;                       /* jarak atas */
+}
+
+/* Teks rata tengah (misalnya untuk angka di tabel laporan) */
+.text-center {
+    text-align: center;
+}
+
+/* ============================================
+   QUEUE TICKET (Detail Antrian style)
+   ============================================ */
+.queue-ticket {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+}
+
+.queue-ticket-top {
+    padding: 16px 16px 10px 16px;
+}
+
+.queue-ticket-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 8px 0;
+}
+
+.queue-ticket-left {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.queue-ticket-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 10px;
+    background: #eef2ff;
+    display: grid;
+    place-items: center;
+    font-size: 14px;
+    flex: 0 0 auto;
+}
+
+.queue-ticket-label {
+    color: var(--muted);
+    font-weight: 700;
+    font-size: 12px;
+}
+
+.queue-ticket-right {
+    text-align: right;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 13px;
+    max-width: 55%;
+    word-break: break-word;
+}
+
+.queue-ticket-divider {
+    height: 1px;
+    background: var(--border);
+}
+
+.queue-ticket-center {
+    padding: 18px 16px 10px 16px;
+    text-align: center;
+}
+
+.queue-ticket-center-label {
+    color: var(--muted);
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.queue-ticket-number {
+    font-size: 56px;
+    font-weight: 900;
+    color: var(--primary);
+    line-height: 1;
+    letter-spacing: 1px;
+}
+
+.queue-ticket-bottom {
+    padding: 12px 16px 16px 16px;
+}
+
+.queue-ticket-bottom-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0;
+}
+
+.queue-ticket-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.queue-ticket-field:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.queue-ticket-field-label {
+    color: var(--muted);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 0;
+    min-width: 120px;
+}
+
+.queue-ticket-field-value {
+    color: var(--text);
+    font-size: 13px;
+    font-weight: 600;
+    word-break: break-word;
+    text-align: right;
+    max-width: 60%;
+    flex: 1;
+}
+
+.queue-ticket-meta {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border);
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.queue-ticket-actions {
+    padding: 14px 16px 16px 16px;
+    display: grid;
+    gap: 10px;
+    border-top: 1px dashed var(--border);
+    background: #fff;
+}
+
+.queue-ticket-actions form,
+.queue-ticket-cancel-form {
+    margin: 0;
+    width: 100%;
+}
+
+.queue-ticket-print-btn {
+    width: 100%;
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-size: 14px;
+    text-align: center;
+    display: block;
+    box-sizing: border-box;
+}
+
+.queue-ticket-cancel-btn {
+    width: 100%;
+    border-radius: 999px;
+    padding: 12px 18px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+    .queue-ticket-right {
+        max-width: 50%;
+    }
+    .queue-ticket-number {
+        font-size: 44px;
+    }
+    .queue-ticket-field-value {
+        max-width: 55%;
+    }
+}
+
+/* ============================================
+   DATE INPUT (KALENDER) - Warna hijau untuk kalender
+   ============================================ */
+/* Kalender - Biarkan browser menggunakan style default untuk konsistensi */
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="datetime-local"]:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(21, 128, 61, 0.14);
+}
+
+/* ============================================
+   SELECT DROPDOWN - Biarkan browser menggunakan style default
+   untuk konsistensi tampilan (mengikuti gaya foto 2).
+   Hanya set accent-color untuk checkbox/radio, bukan untuk dropdown option.
+   Tidak ada rule select {} agar tidak empty ruleset (hindari warning linter).
+   ============================================ */

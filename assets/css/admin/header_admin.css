@@ -1,0 +1,516 @@
+/* ============================================
+   HEADER ADMIN STYLES
+   ============================================
+   File: header_admin.css
+   Deskripsi: Styles untuk header/navigation halaman admin
+   ============================================ */
+
+/* ============================================
+   1. ADMIN HEADER
+   ============================================
+   Header navigation untuk halaman admin
+   ============================================ */
+
+.admin-header {
+    background: white;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;                           /* Pastikan full width */
+    box-sizing: border-box;                /* Pastikan padding tidak menambah lebar */
+}
+
+.admin-header-content {
+    /* Samakan dengan sistem breakpoint container utama */
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px; /* Kurangi gap agar menu navigasi punya lebih banyak ruang */
+    height: 70px;
+    box-sizing: border-box;
+    overflow: hidden; /* Mencegah header terpotong */
+    position: relative; /* Untuk positioning elemen di dalam */
+}
+
+/* Breakpoint sama dengan dashboard-container agar header sejajar dengan konten */
+@media (min-width: 768px) {
+    .admin-header-content {
+        max-width: 720px;
+        padding: 0 20px;
+        gap: 12px;
+    }
+    
+    .admin-header-nav {
+        max-width: calc(100% - 220px); /* Kurangi ruang menu, perbesar ruang untuk tombol logout */
+    }
+    
+    .admin-header-right {
+        padding-left: 20px;
+        min-width: 110px;
+    }
+}
+
+@media (min-width: 992px) {
+    .admin-header-content {
+        max-width: 960px;
+        gap: 16px;
+    }
+    
+    .admin-header-nav {
+        max-width: calc(100% - 250px); /* Perbesar jarak untuk tombol logout */
+    }
+    
+    .admin-header-right {
+        padding-left: 30px;
+        min-width: 120px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .admin-header-content {
+        max-width: 1140px;
+        gap: 20px;
+    }
+    
+    .admin-header-nav {
+        max-width: calc(100% - 280px); /* Perbesar jarak untuk tombol logout di desktop */
+    }
+    
+    .admin-header-right {
+        padding-left: 40px; /* Jarak lebih besar di desktop */
+        min-width: 130px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .admin-header-content {
+        max-width: 1320px;
+        gap: 24px;
+    }
+    
+    .admin-header-nav {
+        max-width: calc(100% - 300px); /* Ruang maksimal untuk tombol logout */
+    }
+    
+    .admin-header-right {
+        padding-left: 50px; /* Jarak maksimal di desktop sangat besar */
+        min-width: 140px;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .admin-header-content {
+        max-width: 100%;
+        padding: 0 12px;
+        gap: 12px;
+    }
+    
+    /* Sembunyikan tombol logout di header saat mobile (hanya muncul di sidebar) */
+    .admin-header-right {
+        display: none !important;
+    }
+}
+
+/* Logo Section */
+.admin-header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.admin-logo-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-logo-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #ffffff;
+    padding: 6px;
+}
+
+.admin-logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.admin-logo-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.admin-logo-text h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text);
+}
+
+.admin-logo-text p {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--primary);                 /* teks subjudul pakai warna utama (hijau) */
+}
+
+/* Navigation Menu */
+.admin-header-nav {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: center;
+    min-width: 0; /* Mencegah overflow saat layar kecil */
+    overflow: hidden; /* Sembunyikan overflow */
+    max-width: calc(100% - 250px); /* Perbesar batasan agar tombol logout punya lebih banyak ruang */
+}
+
+.admin-header-nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2px; /* Kurangi gap antar menu item */
+    overflow-x: auto; /* Scroll horizontal jika menu tidak muat */
+    -webkit-overflow-scrolling: touch; /* Smooth scroll di iOS */
+    scrollbar-width: none; /* Sembunyikan scrollbar di Firefox */
+    -ms-overflow-style: none; /* Sembunyikan scrollbar di IE/Edge */
+}
+
+/* Sembunyikan scrollbar di Chrome/Safari */
+.admin-header-nav-menu::-webkit-scrollbar {
+    display: none;
+}
+
+.admin-header-nav-item {
+    padding: 10px 12px; /* Kurangi padding agar lebih compact */
+    text-decoration: none;
+    color: var(--text);
+    font-weight: 500;
+    border-radius: 8px;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.admin-header-nav-item:hover {
+    background: #f3f4f6;
+    color: var(--primary);                 /* tetap pakai warna utama (hijau) */
+}
+
+.admin-header-nav-item.active {
+    background: #dcfce7;                  /* hijau muda untuk tab aktif */
+    color: var(--primary);                /* teks hijau */
+    font-weight: 600;
+}
+
+/* Logout Button */
+.admin-header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+    margin-left: auto; /* Push ke kanan */
+    padding-left: 30px; /* Perbesar jarak dari menu navigasi */
+    min-width: 100px; /* Pastikan tombol logout punya ruang minimal */
+}
+
+.admin-logout-btn {
+    padding: 8px 18px;
+    background: #e91111;
+    color: white;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    transition: all 0.2s;
+    white-space: nowrap; /* Mencegah text wrap */
+}
+
+
+
+
+
+/* ============================================
+   2. HAMBURGER BUTTON (MOBILE)
+   ============================================
+   Tombol menu hamburger untuk mobile/tablet
+   ============================================ */
+
+.admin-hamburger-btn {
+    display: none;
+    border: 1px solid #d1d5db;
+    background: white;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.admin-hamburger-btn:hover {
+    background: #f3f4f6;
+}
+
+.admin-hamburger-btn svg {
+    width: 22px;
+    height: 22px;
+}
+
+
+/* ============================================
+   3. SIDEBAR MOBILE/TABLET
+   ============================================
+   Sidebar yang muncul dari kiri saat layar kecil
+   ============================================ */
+
+.admin-sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.admin-sidebar-overlay.active {
+    display: block;
+    opacity: 1;
+}
+
+.admin-sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 300px;
+    height: 100vh;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    transition: left 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.admin-sidebar.active {
+    left: 0;
+}
+
+.admin-sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.admin-sidebar-logo-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    padding: 6px;
+}
+
+.admin-sidebar-logo-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.admin-sidebar-logo-text h2 {
+    margin: 0;
+    color: white;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.admin-sidebar-logo-text p {
+    margin: 2px 0 0 0;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 11px;
+}
+
+.admin-sidebar-close-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 8px;
+    padding: 8px;
+    cursor: pointer;
+    color: white;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+}
+
+.admin-sidebar-close-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.admin-sidebar-close-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.admin-sidebar-user-info {
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    margin-top: auto;
+}
+
+.admin-sidebar-user-avatar {
+    width: 50px;
+    height: 50px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    color: var(--primary);                /* inisial user di sidebar pakai hijau */
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.admin-sidebar-user-name {
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.admin-sidebar-menu {
+    padding: 10px 0;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.admin-sidebar-menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 20px;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.admin-sidebar-menu-item:hover {
+    color: white;
+    background: rgba(255, 255, 255, 0.1);
+    border-left-color: white;
+}
+
+.admin-sidebar-menu-item.active {
+    color: white;
+    background: rgba(255, 255, 255, 0.15);
+    border-left-color: white;
+    font-weight: 600;
+}
+
+.admin-sidebar-menu-item svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    color: inherit;
+}
+
+.admin-sidebar-menu-item-logout {
+    color: #ffebee;
+    border-left-color: transparent;
+}
+
+.admin-sidebar-menu-item-logout:hover {
+    background: rgba(255, 82, 82, 0.2);
+    color: #ffcdd2;
+    border-left-color: #ffcdd2;
+}
+
+.admin-sidebar-menu-item-logout.active {
+    border-left-color: #ffcdd2;
+}
+
+
+/* ============================================
+   4. RESPONSIVE DESIGN
+   ============================================
+   Media queries untuk tampilan mobile/tablet
+   ============================================ */
+
+@media (max-width: 768px) {
+    .admin-hamburger-btn { 
+        display: block; 
+        flex-shrink: 0; /* Jangan shrink hamburger button */
+    }
+    .admin-header-nav { 
+        display: none !important; 
+    }
+    .admin-header-content { 
+        padding: 12px 12px; /* SAMAKAN dengan header user */
+        gap: 12px; /* Kurangi gap di mobile */
+        height: auto; /* Auto height di mobile */
+        min-height: 60px; /* Minimal tinggi */
+    }
+    .admin-logo-text h1 { 
+        font-size: 18px; 
+    }
+    .admin-logo-text p { 
+        font-size: 11px; 
+    }
+    .admin-logo-icon { 
+        width: 45px; 
+        height: 45px; 
+    }
+    .admin-header-left { 
+        margin-left: 0; 
+        flex-shrink: 0; /* Jangan shrink logo section */
+        min-width: 0; /* Boleh shrink jika perlu */
+    }
+    .admin-logo-section {
+        flex-shrink: 0; /* Jangan shrink logo */
+    }
+    .admin-header-content { 
+        justify-content: space-between;
+    }
+    body.sidebar-open { 
+        overflow: hidden; 
+    }
+}
+
+@media (min-width: 769px) {
+    .admin-sidebar-overlay,
+    .admin-sidebar { 
+        display: none !important; 
+    }
+    .admin-header-nav { 
+        display: flex !important; 
+    }
+}
+

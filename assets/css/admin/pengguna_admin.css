@@ -1,0 +1,221 @@
+/* ============================================
+   PENGGUNA ADMIN PAGE STYLES
+   ============================================
+   File: pengguna_admin.css
+   Deskripsi: Styles khusus untuk halaman daftar pengguna admin
+   (tabel pengguna + modal detail pengguna dengan foto profil & data rapi)
+   ============================================ */
+
+/* ============================================
+   MODAL DETAIL PENGGUNA
+   ============================================
+   Tampilan detail saat admin klik "Lihat" di tabel.
+   - Foto profil di atas (lingkaran 120px), lalu data per section
+     (Identitas, Data Keluarga, Data Pribadi) — class sama dengan halaman profil
+     sehingga profile_user.css ikut dipakai untuk section/grid/label/value.
+   - Class di bawah hanya mengatur: container body, area foto, dan gambar.
+   ============================================ */
+
+/* Container isi modal: tanpa padding ekstra, jarak atas 8px dari judul; flex column agar foto di tengah dan section data full width */
+.modal-detail-pengguna .profile-detail-admin-body {
+    padding: 0;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+/* Area foto profil: tetap lingkaran 120px, hanya foto yang di-tengah. Hapus hijau dari profile_user.css — di modal pakai abu-abu saja. */
+.modal-detail-pengguna .profile-detail-admin-photo {
+    margin-bottom: 20px;
+    align-self: center;
+}
+
+/* Override .profile-photo-wrap di modal: jangan ikut width 100%, tetap 120x120 lingkaran; hapus background/border hijau (dari profile_user.css) */
+.modal-detail-pengguna .profile-detail-admin-photo.profile-photo-wrap {
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+    background: #f5f5f5;
+    border: 3px solid #ffffff;
+    flex-shrink: 0;
+}
+.modal-detail-pengguna .profile-detail-admin-photo.profile-photo-wrap:hover {
+    background: #f5f5f5;
+    border-color: #ffffff;
+}
+
+/* Gambar foto: lingkaran 120x120px, border abu-abu, object-fit cover agar tidak pecah */
+.modal-detail-pengguna .profile-detail-admin-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #e5e7eb;
+    display: inline-block;
+}
+
+/* Tanpa foto profil: tampilkan inisial nama dalam lingkaran (contoh: FM, BU) */
+.modal-detail-pengguna .profile-detail-admin-initials {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    border: 3px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.profile-detail-admin-initials .profile-detail-admin-initials-text {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    user-select: none;
+}
+
+/* Section data di modal: margin bawah 0 agar rapi dengan padding modal */
+.modal-detail-pengguna .profile-view-data {
+    margin-bottom: 0;
+}
+
+/* Section pertama (Identitas): jarak atas dari area foto */
+.modal-detail-pengguna .profile-view-data > .profile-view-section:first-child {
+    margin-top: 4px;
+}
+
+/* Satu garis pembatas antar section: antara Identitas–Data Keluarga dan Data Keluarga–Data Pribadi (bukan di bawah tiap judul) */
+.modal-detail-pengguna .profile-view-section + .profile-view-section {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 18px;
+    margin-top: 18px;
+}
+
+.modal-detail-pengguna .profile-view-section-title {
+    margin-bottom: 8px;
+}
+.modal-detail-pengguna .profile-view-section {
+    margin-bottom: 0;
+}
+.modal-detail-pengguna .profile-view-section:last-of-type {
+    margin-bottom: 0;
+}
+
+/* ============================================
+   1. RESPONSIVE DESIGN
+   ============================================
+   Media queries untuk tampilan mobile/tablet
+   ============================================ */
+
+/* Mobile dan Tablet: Form search vertikal dan konsisten */
+@media (max-width: 768px) {
+    /* Card padding lebih baik di mobile - konsisten dengan halaman lain */
+    .card {
+        padding: 20px 16px;
+        margin-bottom: 20px;
+    }
+    
+    .card h2 {
+        font-size: 18px;
+        margin-bottom: 20px;
+        margin-top: 0;
+    }
+    
+    /* Filter form di mobile - sama dengan laporan dan riwayat */
+    .filter-form-inline {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 16px;
+    }
+    
+    .filter-group-inline {
+        max-width: 100% !important;
+        width: 100%;
+    }
+    
+    .filter-group-inline input,
+    .filter-group-inline select,
+    .filter-group-inline .filter-search-input {
+        width: 100%;
+        box-sizing: border-box;
+        min-width: auto;
+    }
+    
+    /* Tombol filter di mobile - wrapper div dan tombol */
+    .filter-form-inline > div:last-child {
+        width: 100% !important;
+        margin-left: 0 !important;
+        flex: 1 1 100% !important;
+        display: flex !important;
+        align-items: stretch !important;
+    }
+    
+    .filter-form-inline .btn-filter {
+        width: 100% !important;
+        justify-content: center;
+        min-width: auto !important;
+    }
+    
+    /* Table container untuk mobile */
+    .table-container {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin: 0 -16px;
+        padding: 0 16px;
+    }
+    
+    .data-table {
+        display: table;
+        width: 100%;
+        min-width: 600px;
+        border-collapse: collapse;
+        border-radius: 12px;
+        overflow: hidden;
+        background: white;
+    }
+    
+    .data-table thead {
+        display: table-header-group;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+    }
+    
+    .data-table tbody {
+        display: table-row-group;
+    }
+    
+    .data-table th,
+    .data-table td {
+        display: table-cell;
+        white-space: nowrap;
+    }
+    
+    .data-table th {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    
+    .data-table tbody td:before {
+        display: none;
+    }
+}
+
+/* Tablet: Horizontal scroll dengan ukuran lebih besar */
+@media (min-width: 481px) and (max-width: 768px) {
+    .table-container {
+        margin: 0;
+        padding: 0;
+    }
+    
+    .data-table {
+        min-width: 700px;
+    }
+}
+
